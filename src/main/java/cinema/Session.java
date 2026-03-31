@@ -24,9 +24,9 @@ public class Session {
     }
 
     // --- Connexion centralisée à la base de données ---
-    private static final String URL = "jdbc:postgresql://localhost:5432/fsi";
-    private static final String USER = "fsi_usr";
-    private static final String PASSWORD = "fsi_pwd";
+    private static final String URL = "jdbc:postgresql://localhost:5432/gestion_cinema";
+    private static final String USER = "postgres";
+    private static final String PASSWORD = "root";
     private static Connection connection;
 
     /**
