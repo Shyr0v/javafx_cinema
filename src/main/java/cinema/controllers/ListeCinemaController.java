@@ -104,7 +104,8 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private void btnModif() {
         tcModif.setCellFactory(column -> new TableCell<Cinema, Void>() {
-            private Button btn = new Button("Modifier");
+            private final Button btn = new Button("Modifier");
+
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
@@ -116,18 +117,31 @@ public class ListeCinemaController extends MenuController implements Initializab
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
                         Parent root = fxmlLoader.load();
 
+                        ModifierCinemaController modifierCinemaController = fxmlLoader.getController();
+                        modifierCinemaController.setName(nameUti);
+                        modifierCinemaController.setIdSec(cinema.getIdCinema());
+                        modifierCinemaController.setAttrinuts();
+
                         Stage stage = new Stage();
-                        stage.setTitle("Modification cinema");
+                        stage.setTitle("Modifier un cinéma");
                         stage.setScene(new Scene(root));
-
                         stage.initModality(Modality.APPLICATION_MODAL);
-
                         stage.show();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 });
             }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
 
             @Override
             protected void updateItem(Void item, boolean empty) {
