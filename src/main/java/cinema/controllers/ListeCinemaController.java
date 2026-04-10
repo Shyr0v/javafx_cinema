@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import cinema.BO.Cinema;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.beans.property.SimpleStringProperty;
 
 public class ListeCinemaController extends MenuController implements Initializable {
 
@@ -41,7 +43,14 @@ public class ListeCinemaController extends MenuController implements Initializab
     public void initialize(URL location, ResourceBundle resources) {
 
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
-        tcFranchise.setCellValueFactory(new PropertyValueFactory<>("franchise"));
+
+        // Correction ligne 6 :
+        // l'objet Cinema ne possède pas de propriété "franchise".
+        // On convertit donc l'idFranchise en nom de franchise
+        // directement au moment de l'affichage dans la colonne.
+        tcFranchise.setCellValueFactory(cellData ->
+                new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
+
         ObservableList<Cinema> data = getCinema();
         tvCinema.setItems(data);
     }
@@ -52,6 +61,19 @@ public class ListeCinemaController extends MenuController implements Initializab
         List<Cinema> mesCinemas = cinemaDAO.findAll();
         ObservableList<Cinema> list = FXCollections.observableArrayList(mesCinemas);
         return list;
+    }
+
+    private String getNomFranchise(int idFranchise) {
+        FranchiseDAO franchiseDAO = new FranchiseDAO();
+
+        // Correction ligne 6 :
+        // si la franchise existe, on affiche son nom dans le tableau.
+        // Sinon, on retourne une chaîne vide pour éviter un affichage incorrect.
+        if (franchiseDAO.find(idFranchise) != null) {
+            return franchiseDAO.find(idFranchise).getNomFranchise();
+        }
+
+        return "";
     }
 
     public void bRetourClick(ActionEvent actionEvent) {
