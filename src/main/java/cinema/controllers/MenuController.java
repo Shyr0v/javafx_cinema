@@ -99,7 +99,6 @@ public class MenuController {
 
             // Correction ligne 2 :
             // le fichier cible était mal orthographié ("cinemaa" au lieu de "cinema"),
-            // ce qui cassait l'ouverture de l'écran liste des cinémas.
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = fxmlLoader.load();
@@ -127,14 +126,11 @@ public class MenuController {
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_ajout_section.fxml"));
+                    getClass().getResource("/cinema/views/page_ajout_cinema.fxml"));
             Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
 
-            // Correction ligne 18 :
-            // on garde le fichier cible tel quel pour l'instant,
-            // mais on corrige au moins le titre affiché à l'utilisateur.
             stage.setTitle("Ajouter un cinéma");
             stage.setScene(new Scene(root));
 
@@ -155,7 +151,7 @@ public class MenuController {
 
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_liste_cours.fxml"));
+                    getClass().getResource("/cinema/views/page_liste_salle.fxml"));
             Parent root = fxmlLoader.load();
 
             // Correction ligne 18 :
