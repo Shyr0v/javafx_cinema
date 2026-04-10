@@ -97,12 +97,15 @@ public class MenuController {
         stageP.close();
         try {
 
+            // Correction ligne 2 :
+            // le fichier cible était mal orthographié ("cinemaa" au lieu de "cinema"),
+            // ce qui cassait l'ouverture de l'écran liste des cinémas.
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = fxmlLoader.load();
 
-            ListeCinemaController listeSectionController = fxmlLoader.getController();
-            listeSectionController.setName(nameUti);
+            ListeCinemaController listeCinemaController = fxmlLoader.getController();
+            listeCinemaController.setName(nameUti);
 
             Stage stage = new Stage();
             stage.setTitle("Liste cinéma");
