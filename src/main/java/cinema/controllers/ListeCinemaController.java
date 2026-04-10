@@ -43,13 +43,11 @@ public class ListeCinemaController extends MenuController implements Initializab
     public void initialize(URL location, ResourceBundle resources) {
 
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
-
-        // Correction ligne 6 :
-        // l'objet Cinema ne possède pas de propriété "franchise".
-        // On convertit donc l'idFranchise en nom de franchise
-        // directement au moment de l'affichage dans la colonne.
         tcFranchise.setCellValueFactory(cellData ->
                 new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
+
+        btnModif();
+        btnSupp();
 
         ObservableList<Cinema> data = getCinema();
         tvCinema.setItems(data);
