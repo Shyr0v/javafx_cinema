@@ -98,7 +98,7 @@ public class MenuController {
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_liste_cinemaa.fxml"));
+                    getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = fxmlLoader.load();
 
             ListeCinemaController listeSectionController = fxmlLoader.getController();
@@ -128,7 +128,11 @@ public class MenuController {
             Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Ajout d'une Section");
+
+            // Correction ligne 18 :
+            // on garde le fichier cible tel quel pour l'instant,
+            // mais on corrige au moins le titre affiché à l'utilisateur.
+            stage.setTitle("Ajouter un cinéma");
             stage.setScene(new Scene(root));
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -151,15 +155,14 @@ public class MenuController {
                     getClass().getResource("/cinema/views/page_liste_cours.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Créer une nouvelle fenêtre (Stage)
+            // Correction ligne 18 :
+            // on corrige uniquement le libellé affiché à l'utilisateur.
             Stage stage = new Stage();
-            stage.setTitle("Liste cours");
+            stage.setTitle("Liste des salles");
             stage.setScene(new Scene(root));
 
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
 
         } catch (Exception e) {
@@ -182,15 +185,14 @@ public class MenuController {
                     getClass().getResource("/cinema/views/page_ajout_cours.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Créer une nouvelle fenêtre (Stage)
+            // Correction ligne 18 :
+            // on corrige uniquement le titre de la fenêtre.
             Stage stage = new Stage();
-            stage.setTitle("Ajout d'un cours");
+            stage.setTitle("Ajouter une salle");
             stage.setScene(new Scene(root));
 
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
 
         } catch (Exception e) {

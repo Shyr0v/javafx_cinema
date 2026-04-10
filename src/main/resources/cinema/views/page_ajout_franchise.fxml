@@ -31,7 +31,7 @@
                             onAction="#bAjouterFranchiseClick" />
                     </items>
                 </Menu>
-                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16">
                             <image>
@@ -41,11 +41,11 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeCinema"
-                            text="Liste des sections"
-                            onAction="#bListeCinemaClick" />
+                                  text="Liste des cinémas"
+                                  onAction="#bListeCinemaClick" />
                         <MenuItem fx:id="bAjouterCinema"
-                            text="Ajouter une section"
-                            onAction="#bAjouterCinemaClick" />
+                                  text="Ajouter un cinéma"
+                                  onAction="#bAjouterCinemaClick" />
                     </items>
                 </Menu>
                 <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
@@ -58,11 +58,11 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeSalle"
-                            text="Liste cours"
-                            onAction="#bListeSalleClick" />
+                                  text="Liste des salles"
+                                  onAction="#bListeSalleClick" />
                         <MenuItem fx:id="bAjouterSalle"
-                            text="Ajouter un cours"
-                            onAction="#bAjouterSalleClick" />
+                                  text="Ajouter une salle"
+                                  onAction="#bAjouterSalleClick" />
                     </items>
                 </Menu>
                 <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
@@ -139,17 +139,17 @@
             </padding>
 
             <Button fx:id="bRetour"
-                text="bRetour"
+                text="Retour"
                 onAction="#bRetourClick"
                 styleClass="action-button" />
 
             <Button fx:id="bEffacer"
-                text="bEffacer"
+                text="Effacer"
                 onAction="#bEffacerClick"
                 styleClass="action-button" />
 
             <Button fx:id="bEnregistrer"
-                text="bEnregistrer"
+                text="Enregistrer"
                 onAction="#bEnregistrerClick"
                 styleClass="action-button" />
         </HBox>
