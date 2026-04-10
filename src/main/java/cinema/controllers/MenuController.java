@@ -181,7 +181,7 @@ public class MenuController {
 
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_ajout_cours.fxml"));
+                    getClass().getResource("/cinema/views/page_ajout_salle.fxml"));
             Parent root = fxmlLoader.load();
 
             // Correction ligne 18 :
