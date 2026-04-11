@@ -6,11 +6,9 @@ import java.sql.SQLException;
 
 public class DBManager {
 
-    private static String url = "jdbc:postgresql://localhost:5432/gestion_cinema";
-
-    private static String user = "postgres";
-
-    private static String pass = "root";
+    private static final String URL = "jdbc:postgresql://localhost:5432/gestion_cinema";
+    private static final String USER = "postgres";
+    private static final String PASS = "root";
 
     private static Connection connect;
 
@@ -18,11 +16,11 @@ public class DBManager {
         if (connect == null) {
             try {
                 Class.forName("org.postgresql.Driver");
-                connect = DriverManager.getConnection(url, user, pass);
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
+                connect = DriverManager.getConnection(URL, USER, PASS);
             } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+                throw new RuntimeException("Driver PostgreSQL introuvable", e);
+            } catch (SQLException e) {
+                throw new RuntimeException("Connexion BD impossible", e);
             }
         }
         return connect;
