@@ -41,7 +41,6 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
         tcFranchise.setCellValueFactory(cellData ->
                 new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
@@ -54,30 +53,22 @@ public class ListeCinemaController extends MenuController implements Initializab
     }
 
     private ObservableList<Cinema> getCinema() {
-
         CinemaDAO cinemaDAO = new CinemaDAO();
         List<Cinema> mesCinemas = cinemaDAO.findAll();
-        ObservableList<Cinema> list = FXCollections.observableArrayList(mesCinemas);
-        return list;
+        return FXCollections.observableArrayList(mesCinemas);
     }
 
     private String getNomFranchise(int idFranchise) {
         FranchiseDAO franchiseDAO = new FranchiseDAO();
-
-        // Correction ligne 6 :
-        // si la franchise existe, on affiche son nom dans le tableau.
-        // Sinon, on retourne une chaîne vide pour éviter un affichage incorrect.
         if (franchiseDAO.find(idFranchise) != null) {
             return franchiseDAO.find(idFranchise).getNomFranchise();
         }
-
         return "";
     }
 
     public void bRetourClick(ActionEvent actionEvent) {
         Stage stageP = (Stage) bRetour.getScene().getWindow();
         stageP.close();
-
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
@@ -87,15 +78,10 @@ public class ListeCinemaController extends MenuController implements Initializab
             accueilController.setName(nameUti);
             accueilController.setBienvenue();
 
-            // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
             stage.setTitle("Liste franchises");
             stage.setScene(new Scene(root));
-
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -111,7 +97,6 @@ public class ListeCinemaController extends MenuController implements Initializab
                     Cinema cinema = getTableView().getItems().get(getIndex());
                     Stage stageP = (Stage) bRetour.getScene().getWindow();
                     stageP.close();
-
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
@@ -127,7 +112,6 @@ public class ListeCinemaController extends MenuController implements Initializab
                         stage.setScene(new Scene(root));
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.show();
-
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -142,38 +126,24 @@ public class ListeCinemaController extends MenuController implements Initializab
         });
     }
 
-
-            @Override
-            protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty);
-                setGraphic(empty ? null : btn);
-            }
-        });
-    }
-
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
             private Button btn = new Button("Supprimer");
+
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
                     FranchiseDAO etudiantDAO = new FranchiseDAO();
                     if (etudiantDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
                         try {
-                            // Charger le fichier FXML
                             FXMLLoader fxmlLoader = new FXMLLoader(
                                     getClass().getResource("/cinema/views/popup_cinema.fxml"));
                             Parent root = fxmlLoader.load();
 
-                            // Créer une nouvelle fenêtre (Stage)
                             Stage stage = new Stage();
                             stage.setTitle("Pop-up");
                             stage.setScene(new Scene(root));
-
-                            // Configurer la fenêtre en tant que modal
                             stage.initModality(Modality.APPLICATION_MODAL);
-
-                            // Afficher la fenêtre et attendre qu'elle se ferme
                             stage.show();
                         } catch (Exception e) {
                             e.printStackTrace();
@@ -193,5 +163,4 @@ public class ListeCinemaController extends MenuController implements Initializab
             }
         });
     }
-
 }
