@@ -22,7 +22,6 @@ public class AccueilController extends MenuController implements Initializable {
 
     public void setUtilisateur(Utilisateur utilisateur) {
         this.utilisateur = utilisateur;
-
         if (utilisateur != null) {
             this.nameUti = utilisateur.getNom() + " " + utilisateur.getPrenom();
         }

@@ -124,19 +124,23 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     public Utilisateur authenticate(String login, String password) {
         Utilisateur user = null;
+
         try {
             String sql = "SELECT * FROM utilisateur WHERE login = ? AND mdp = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, login);
             ps.setString(2, password);
+
             ResultSet result = ps.executeQuery();
 
             if (result.next()) {
                 user = hydrate(result);
             }
+
         } catch (SQLException e) {
-            return null;
+            e.printStackTrace();
         }
+
         return user;
     }
 }

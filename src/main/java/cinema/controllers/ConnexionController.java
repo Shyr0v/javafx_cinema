@@ -42,12 +42,12 @@ public class ConnexionController implements Initializable {
         UtilisateurDAO userDAO = new UtilisateurDAO();
         Utilisateur user = userDAO.authenticate(login, mdp);
 
+        tfMDP.clear();
+
         if (user != null) {
             showAccueil(user);
-            tfMDP.clear();
         } else {
             showError();
-            tfMDP.clear();
         }
     }
 
@@ -69,6 +69,7 @@ public class ConnexionController implements Initializable {
             stage.setScene(new Scene(root));
             stage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
@@ -84,9 +85,10 @@ public class ConnexionController implements Initializable {
             Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Error Window");
+            stage.setTitle("Erreur de connexion");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setResizable(false);
             stage.showAndWait();
 
         } catch (Exception e) {
