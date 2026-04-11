@@ -17,8 +17,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -26,86 +28,94 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
     @FXML
     private TextField tfNomFranchise, tfSiegeSocial;
+
     @FXML
     private Button bRetour;
+
     @FXML
     private ListView<Utilisateur> lvGerantFranchise;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         ObservableList<Utilisateur> utilisateurs = getUtilisateurList();
-
         lvGerantFranchise.setItems(utilisateurs);
     }
 
     private ObservableList<Utilisateur> getUtilisateurList() {
-
         UtilisateurDAO utilisateurDAO = new UtilisateurDAO();
         List<Utilisateur> utilisateurs = utilisateurDAO.findAll();
-
-        ObservableList<Utilisateur> list = FXCollections.observableArrayList(utilisateurs);
-        return list;
+        return FXCollections.observableArrayList(utilisateurs);
     }
 
     @FXML
     public void bRetourClick(ActionEvent event) {
-        // On fait le lien avec l'ecran actuel
-        Stage stageP = (Stage) bRetour.getScene().getWindow();
-        // on ferme l'écran
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            AccueilController accueilController = fxmlLoader.getController();
+            AccueilController accueilController = loader.getController();
             accueilController.setName(nameUti);
             accueilController.setBienvenue();
 
-            // Créer une nouvelle fenêtre (Stage)
-            Stage stage = new Stage();
-            stage.setTitle("Liste franchises");
+            Stage stage = (Stage) bRetour.getScene().getWindow();
             stage.setScene(new Scene(root));
-
-            // Configurer la fenêtre en tant que modal
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
+        String nom = tfNomFranchise.getText().trim();
+        String siege = tfSiegeSocial.getText().trim();
+        Utilisateur gerant = lvGerantFranchise.getSelectionModel().getSelectedItem();
 
-        String x = tfNomFranchise.getText();
-        String y = tfSiegeSocial.getText();
+        if (nom.isEmpty() || siege.isEmpty() || gerant == null) {
+            showError();
+            return;
+        }
 
-        int z = 1;
-        Franchise bloup = new Franchise(0, x, y, z);
+        Franchise franchise = new Franchise(
+                0,
+                nom,
+                siege,
+                gerant.getIdUtilisateur());
 
         FranchiseDAO franchiseDAO = new FranchiseDAO();
-        boolean controle = franchiseDAO.create(bloup);
+        boolean controle = franchiseDAO.create(franchise);
+
         if (controle) {
             tfNomFranchise.clear();
             tfSiegeSocial.clear();
             lvGerantFranchise.getSelectionModel().clearSelection();
+        } else {
+            showError();
         }
-
     }
 
     @FXML
     public void bEffacerClick(ActionEvent event) {
-        if (tfNomFranchise != null)
+        if (tfNomFranchise != null) {
             tfNomFranchise.clear();
-        if (tfSiegeSocial != null)
+        }
+        if (tfSiegeSocial != null) {
             tfSiegeSocial.clear();
+        }
         lvGerantFranchise.getSelectionModel().clearSelection();
     }
 
+    private void showError() {
+        Stage stage = new Stage();
+        stage.setTitle("Erreur");
+
+        Label label = new Label("Veuillez remplir tous les champs.");
+        StackPane root = new StackPane(label);
+
+        stage.setScene(new Scene(root, 320, 120));
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.showAndWait();
+    }
 }

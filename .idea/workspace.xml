@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update ConnexionController et UtilisateurDAO">
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/UtilisateurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/UtilisateurDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsData">
+    <projectState path="$PROJECT_DIR$">
+      <ProjectState />
+    </projectState>
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="P2026_2SIO_javafx_cinema" type="f1a62948:ProjectNode" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Shyr0v&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Shyr0v/javafx_cinema&quot;,
+    &quot;accountId&quot;: &quot;4013d251-785c-4fe6-a2cd-cb790583ed66&quot;
+  }
+}</component>
+  <component name="GradleScriptDefinitionsStorage" workingDir="$PROJECT_DIR$" gradleHome="C:\Users\azera\.gradle\wrapper\dists\gradle-8.14-bin\38aieal9i53h9rfe7vjup95b9\gradle-8.14" javaHome="C:\Users\azera\.jdks\azul-22.0.2" gradleVersion="8.14" />
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="3B9oeArsJoK2kr0GmK2xPXlqka8" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "axel",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/azera/Documents/javafx-cinema-etudiants",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.26830.84" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-IU-252.26830.84" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="" />
+      <created>1773910739947</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1773910739947</updated>
+      <workItem from="1773910741470" duration="273000" />
+      <workItem from="1773912362105" duration="104000" />
+      <workItem from="1774003104063" duration="1234000" />
+      <workItem from="1774006810114" duration="1036000" />
+      <workItem from="1774870577232" duration="636000" />
+      <workItem from="1774874431449" duration="705000" />
+      <workItem from="1774875273023" duration="477000" />
+      <workItem from="1774945881378" duration="10811000" />
+      <workItem from="1775908578536" duration="9024000" />
+    </task>
+    <task id="LOCAL-00001" summary="Update">
+      <option name="closed" value="true" />
+      <created>1774959952818</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1774959952818</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Update Franchise et Menu">
+      <option name="closed" value="true" />
+      <created>1775911840855</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1775911840855</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Update Ajout franchise">
+      <option name="closed" value="true" />
+      <created>1775912267228</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1775912267228</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Update Ajout cinema OP">
+      <option name="closed" value="true" />
+      <created>1775913053339</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1775913053339</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Update ListeCinemaController">
+      <option name="closed" value="true" />
+      <created>1775913830067</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1775913830067</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Update Ajout franchise et Utilisateur">
+      <option name="closed" value="true" />
+      <created>1775913957580</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1775913957580</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Update Accueil">
+      <option name="closed" value="true" />
+      <created>1775914738714</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1775914738714</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Update DBManager and main.css">
+      <option name="closed" value="true" />
+      <created>1775915916820</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1775915916820</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Update ConnexionController et UtilisateurDAO">
+      <option name="closed" value="true" />
+      <created>1775916325695</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1775916325695</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Update" />
+    <MESSAGE value="Update Franchise et Menu" />
+    <MESSAGE value="Update Ajout franchise" />
+    <MESSAGE value="Update Ajout cinema OP" />
+    <MESSAGE value="Update ListeCinemaController" />
+    <MESSAGE value="Update Ajout franchise et Utilisateur" />
+    <MESSAGE value="Update Accueil" />
+    <MESSAGE value="Update DBManager and main.css" />
+    <MESSAGE value="Update ConnexionController et UtilisateurDAO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update ConnexionController et UtilisateurDAO" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.RuntimeException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

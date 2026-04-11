@@ -45,7 +45,7 @@
                             onAction="#bAjouterFranchiseClick" text="Ajouter une franchise" />
                     </items>
                 </Menu>
-                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion section">
+                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
                     <graphic>
                         <ImageView fitHeight="16" fitWidth="16">
                             <image>
@@ -55,9 +55,9 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeCinema" mnemonicParsing="false"
-                            onAction="#bListeCinemaClick" text="Liste des sections" />
+                                  onAction="#bListeCinemaClick" text="Liste des cinémas" />
                         <MenuItem fx:id="bAjouterCinema" mnemonicParsing="false"
-                            onAction="#bAjouterCinemaClick" text="Ajouter une section" />
+                                  onAction="#bAjouterCinemaClick" text="Ajouter un cinéma" />
                     </items>
                 </Menu>
                 <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
@@ -70,9 +70,9 @@
                     </graphic>
                     <items>
                         <MenuItem fx:id="bListeSalle" mnemonicParsing="false"
-                            onAction="#bListeSalleClick" text="Liste cours" />
+                                  onAction="#bListeSalleClick" text="Liste des salles" />
                         <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false"
-                            onAction="#bAjouterSalleClick" text="Ajouter un cours" />
+                                  onAction="#bAjouterSalleClick" text="Ajouter une salle" />
                     </items>
                 </Menu>
                 <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
@@ -179,7 +179,7 @@
                     onAction="#bEnregistrerClick"
                     prefHeight="39.0"
                     prefWidth="200.0"
-                    text="ENREGISTRER"
+                    text="Enregistrer"
                     textFill="#024010">
                     <font>
                         <Font name="System Bold" size="18.0" />
@@ -190,7 +190,7 @@
                     onAction="#bRetourClick"
                     prefHeight="39.0"
                     prefWidth="200.0"
-                    text="RETOUR"
+                    text="Retour"
                     textFill="#024010">
                     <font>
                         <Font name="System Bold" size="18.0" />

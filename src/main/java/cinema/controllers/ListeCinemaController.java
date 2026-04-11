@@ -5,8 +5,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cinema.BO.Cinema;
+import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -39,21 +41,33 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
-        tcFranchise.setCellValueFactory(new PropertyValueFactory<>("franchise"));
-        ObservableList<Cinema> data = getCinema();
-        tvCinema.setItems(data);
+        tcFranchise.setCellValueFactory(cellData ->
+                new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
+
+        btnModif();
+        btnSupp();
+
+        tvCinema.setItems(getCinema());
     }
 
     private ObservableList<Cinema> getCinema() {
-
         CinemaDAO cinemaDAO = new CinemaDAO();
         List<Cinema> mesCinemas = cinemaDAO.findAll();
-        ObservableList<Cinema> list = FXCollections.observableArrayList(mesCinemas);
-        return list;
+        return FXCollections.observableArrayList(mesCinemas);
     }
 
+    private String getNomFranchise(int idFranchise) {
+        FranchiseDAO franchiseDAO = new FranchiseDAO();
+        Franchise franchise = franchiseDAO.find(idFranchise);
+
+        if (franchise != null) {
+            return franchise.getNomFranchise();
+        }
+        return "";
+    }
+
+    @FXML
     public void bRetourClick(ActionEvent actionEvent) {
         Stage stageP = (Stage) bRetour.getScene().getWindow();
         stageP.close();
@@ -67,16 +81,12 @@ public class ListeCinemaController extends MenuController implements Initializab
             accueilController.setName(nameUti);
             accueilController.setBienvenue();
 
-            // Créer une nouvelle fenêtre (Stage)
             Stage stage = new Stage();
-            stage.setTitle("Liste franchises");
+            stage.setTitle("Accueil");
             stage.setScene(new Scene(root));
-
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -84,7 +94,8 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private void btnModif() {
         tcModif.setCellFactory(column -> new TableCell<Cinema, Void>() {
-            private Button btn = new Button("Modifier");
+            private final Button btn = new Button("Modifier");
+
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
@@ -96,13 +107,17 @@ public class ListeCinemaController extends MenuController implements Initializab
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
                         Parent root = fxmlLoader.load();
 
+                        ModifierCinemaController modifierCinemaController = fxmlLoader.getController();
+                        modifierCinemaController.setName(nameUti);
+                        modifierCinemaController.setIdSec(cinema.getIdCinema());
+                        modifierCinemaController.setAttrinuts();
+
                         Stage stage = new Stage();
-                        stage.setTitle("Modification cinema");
+                        stage.setTitle("Modifier un cinéma");
                         stage.setScene(new Scene(root));
-
                         stage.initModality(Modality.APPLICATION_MODAL);
-
                         stage.show();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -119,35 +134,16 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
-            private Button btn = new Button("Supprimer");
+            private final Button btn = new Button("Supprimer");
+
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    FranchiseDAO etudiantDAO = new FranchiseDAO();
-                    if (etudiantDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
-                        try {
-                            // Charger le fichier FXML
-                            FXMLLoader fxmlLoader = new FXMLLoader(
-                                    getClass().getResource("/cinema/views/popup_cinema.fxml"));
-                            Parent root = fxmlLoader.load();
+                    CinemaDAO cinemaDAO = new CinemaDAO();
 
-                            // Créer une nouvelle fenêtre (Stage)
-                            Stage stage = new Stage();
-                            stage.setTitle("Pop-up");
-                            stage.setScene(new Scene(root));
-
-                            // Configurer la fenêtre en tant que modal
-                            stage.initModality(Modality.APPLICATION_MODAL);
-
-                            // Afficher la fenêtre et attendre qu'elle se ferme
-                            stage.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
+                    boolean deleted = cinemaDAO.delete(cinema);
+                    if (deleted) {
                         tvCinema.getItems().remove(cinema);
-                        CinemaDAO cinemaDAO = new CinemaDAO();
-                        cinemaDAO.delete(cinema);
                     }
                 });
             }
@@ -159,5 +155,4 @@ public class ListeCinemaController extends MenuController implements Initializab
             }
         });
     }
-
 }
