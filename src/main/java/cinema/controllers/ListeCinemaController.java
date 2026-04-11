@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cinema.BO.Cinema;
+import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,7 +24,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.beans.property.SimpleStringProperty;
 
 public class ListeCinemaController extends MenuController implements Initializable {
 
@@ -48,8 +48,7 @@ public class ListeCinemaController extends MenuController implements Initializab
         btnModif();
         btnSupp();
 
-        ObservableList<Cinema> data = getCinema();
-        tvCinema.setItems(data);
+        tvCinema.setItems(getCinema());
     }
 
     private ObservableList<Cinema> getCinema() {
@@ -60,15 +59,19 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private String getNomFranchise(int idFranchise) {
         FranchiseDAO franchiseDAO = new FranchiseDAO();
-        if (franchiseDAO.find(idFranchise) != null) {
-            return franchiseDAO.find(idFranchise).getNomFranchise();
+        Franchise franchise = franchiseDAO.find(idFranchise);
+
+        if (franchise != null) {
+            return franchise.getNomFranchise();
         }
         return "";
     }
 
+    @FXML
     public void bRetourClick(ActionEvent actionEvent) {
         Stage stageP = (Stage) bRetour.getScene().getWindow();
         stageP.close();
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
@@ -79,10 +82,11 @@ public class ListeCinemaController extends MenuController implements Initializab
             accueilController.setBienvenue();
 
             Stage stage = new Stage();
-            stage.setTitle("Liste franchises");
+            stage.setTitle("Accueil");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -97,6 +101,7 @@ public class ListeCinemaController extends MenuController implements Initializab
                     Cinema cinema = getTableView().getItems().get(getIndex());
                     Stage stageP = (Stage) bRetour.getScene().getWindow();
                     stageP.close();
+
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
@@ -112,6 +117,7 @@ public class ListeCinemaController extends MenuController implements Initializab
                         stage.setScene(new Scene(root));
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.show();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -128,30 +134,16 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
-            private Button btn = new Button("Supprimer");
+            private final Button btn = new Button("Supprimer");
 
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    FranchiseDAO etudiantDAO = new FranchiseDAO();
-                    if (etudiantDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(
-                                    getClass().getResource("/cinema/views/popup_cinema.fxml"));
-                            Parent root = fxmlLoader.load();
+                    CinemaDAO cinemaDAO = new CinemaDAO();
 
-                            Stage stage = new Stage();
-                            stage.setTitle("Pop-up");
-                            stage.setScene(new Scene(root));
-                            stage.initModality(Modality.APPLICATION_MODAL);
-                            stage.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                    } else {
+                    boolean deleted = cinemaDAO.delete(cinema);
+                    if (deleted) {
                         tvCinema.getItems().remove(cinema);
-                        CinemaDAO cinemaDAO = new CinemaDAO();
-                        cinemaDAO.delete(cinema);
                     }
                 });
             }
