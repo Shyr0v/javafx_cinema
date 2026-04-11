@@ -108,14 +108,40 @@ public class ModifierCinemaController extends MenuController implements Initiali
     @FXML
     private void bEnregistrerClick(ActionEvent event) {
         String lib = taLibSec.getText();
+        String adresse = tfAdresse.getText();
+        String ville = tfVille.getText();
+
         if (!lib.trim().isEmpty()) {
-            Cinema sec = new Cinema(idSec, lib, tfAdresse.getText(), tfVille.getText(), idSec);
-            CinemaDAO sectionDAO = new CinemaDAO();
-            boolean controle = sectionDAO.update(sec);
+            CinemaDAO cinemaDAO = new CinemaDAO();
+
+            // Correction ligne 11 :
+            // on récupère le cinéma existant pour éviter d'écraser
+            // les données avec des valeurs incohérentes.
+            Cinema cinemaExistant = cinemaDAO.find(idSec);
+
+            int idFranchise = 0;
+
+            // Si une franchise est sélectionnée, on prend son identifiant.
+            if (cbFranchise.getValue() != null) {
+                idFranchise = cbFranchise.getValue().getIdFranchise();
+            }
+            // Sinon, on conserve la franchise déjà enregistrée.
+            else if (cinemaExistant != null) {
+                idFranchise = cinemaExistant.getIdFranchise();
+            }
+
+            // Correction ligne 11 :
+            // on reconstruit correctement l'objet Cinema avec
+            // les vraies valeurs de chaque champ.
+            Cinema cinema = new Cinema(idSec, lib, adresse, ville, idFranchise);
+
+            boolean controle = cinemaDAO.update(cinema);
+
             if (controle) {
                 Stage stageP = (Stage) bRetour.getScene().getWindow();
                 stageP.close();
                 try {
+
                     FXMLLoader fxmlLoader = new FXMLLoader(
                             getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
                     Parent root = fxmlLoader.load();
@@ -126,14 +152,18 @@ public class ModifierCinemaController extends MenuController implements Initiali
                     Stage stage = new Stage();
                     stage.setTitle("Liste franchises");
                     stage.setScene(new Scene(root));
+
                     stage.initModality(Modality.APPLICATION_MODAL);
+
                     stage.show();
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }
         } else {
             try {
+                // Cette popup sera corrigée à la ligne 12.
                 FXMLLoader fxmlLoader = new FXMLLoader(
                         getClass().getResource("/cinema/views/popup_ajout_etu.fxml"));
                 Parent root = fxmlLoader.load();
@@ -143,6 +173,7 @@ public class ModifierCinemaController extends MenuController implements Initiali
                 stage.setScene(new Scene(root));
                 stage.initModality(Modality.APPLICATION_MODAL);
                 stage.show();
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
