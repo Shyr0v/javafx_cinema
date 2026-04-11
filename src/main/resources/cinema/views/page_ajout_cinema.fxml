@@ -1,107 +1,70 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/22"
+<AnchorPane prefHeight="600.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="cinema.controllers.MenuController"
-            stylesheets="@./css/main.css">
+            fx:controller="cinema.controllers.AjouterCinemaController"
+            stylesheets="@../css/main.css">
 
-    <top>
-        <MenuBar>
-            <menus>
-                <Menu fx:id="gestionFranchise" mnemonicParsing="false" text="Gestion franchises">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../images/franchise_64x64.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem fx:id="bListeFranchise"
-                                  text="Liste franchises"
-                                  onAction="#bListFranchiseClick" />
-                        <MenuItem fx:id="bAjouterFranchise"
-                                  text="Ajouter une franchise"
-                                  onAction="#bAjouterFranchiseClick" />
-                    </items>
-                </Menu>
+    <children>
 
-                <Menu fx:id="gestionCinema" mnemonicParsing="false" text="Gestion cinémas">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../images/cinema_32x32.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem fx:id="bListeCinema"
-                                  text="Liste des cinémas"
-                                  onAction="#bListeCinemaClick" />
-                        <MenuItem fx:id="bAjouterCinema"
-                                  text="Ajouter un cinéma"
-                                  onAction="#bAjouterCinemaClick" />
-                    </items>
-                </Menu>
+        <VBox spacing="20"
+              layoutX="150"
+              layoutY="80"
+              prefWidth="600">
 
-                <Menu fx:id="gestionSalle" mnemonicParsing="false" text="Gestion salles">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../images/salle_32x32.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem fx:id="bListeSalle"
-                                  text="Liste des salles"
-                                  onAction="#bListeSalleClick" />
-                        <MenuItem fx:id="bAjouterSalle"
-                                  text="Ajouter une salle"
-                                  onAction="#bAjouterSalleClick" />
-                    </items>
-                </Menu>
+            <children>
 
-                <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
-                    <graphic>
-                        <ImageView fitHeight="16" fitWidth="16">
-                            <image>
-                                <Image url="@../images/info.png" />
-                            </image>
-                        </ImageView>
-                    </graphic>
-                    <items>
-                        <MenuItem fx:id="bAccueil"
-                                  text="Accueil"
-                                  onAction="#bAccueilClick" />
-                        <MenuItem fx:id="bQuitter"
-                                  text="Quitter"
-                                  onAction="#bQuitterClick" />
-                    </items>
-                </Menu>
-            </menus>
-        </MenuBar>
-    </top>
+                <Label text="AJOUT D'UN CINÉMA"
+                       styleClass="titre-page"/>
 
-    <center>
-        <VBox alignment="CENTER" spacing="15" styleClass="content">
-            <padding>
-                <Insets top="40" right="40" bottom="40" left="40" />
-            </padding>
+                <Label text="Nom du cinéma :" />
+                <TextField fx:id="tfDenomination"
+                           promptText="Nom du cinéma"/>
 
-            <Label text="AJOUT D'UN CINÉMA" styleClass="title-label" />
-            <Label text="Écran ajouté pour corriger la navigation du menu." />
+                <Label text="Adresse :" />
+                <TextField fx:id="tfAdresse"
+                           promptText="Adresse"/>
+
+                <Label text="Ville :" />
+                <TextField fx:id="tfVille"
+                           promptText="Ville"/>
+
+                <Label text="Franchise :" />
+                <ListView fx:id="lvFranchise"
+                          prefHeight="150"/>
+
+                <VBox spacing="10">
+
+                    <children>
+
+                        <Button text="Enregistrer"
+                                onAction="#bEnregistrerClick"
+                                styleClass="btn-valider"/>
+
+                        <Button text="Effacer"
+                                onAction="#bEffacerClick"
+                                styleClass="btn-annuler"/>
+
+                        <Button text="Retour"
+                                onAction="#bRetourClick"
+                                styleClass="btn-retour"/>
+
+                    </children>
+
+                </VBox>
+
+            </children>
+
         </VBox>
-    </center>
 
-</BorderPane>
+    </children>
+
+</AnchorPane>

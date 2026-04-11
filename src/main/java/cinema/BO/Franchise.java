@@ -58,7 +58,7 @@ public class Franchise {
 
     @Override
     public String toString() {
-        return "Franchise [idFranchise=" + idFranchise + ", nomFranchise=" + nomFranchise + ", siegeSocial="
-                + siegeSocial + ", idGerant=" + idGerant + "]";
+        return nomFranchise.get();
     }
+
 }
