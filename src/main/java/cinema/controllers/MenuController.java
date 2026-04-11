@@ -97,12 +97,14 @@ public class MenuController {
         stageP.close();
         try {
 
+            // Correction ligne 2 :
+            // le fichier cible était mal orthographié ("cinemaa" au lieu de "cinema"),
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_liste_cinemaa.fxml"));
+                    getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = fxmlLoader.load();
 
-            ListeCinemaController listeSectionController = fxmlLoader.getController();
-            listeSectionController.setName(nameUti);
+            ListeCinemaController listeCinemaController = fxmlLoader.getController();
+            listeCinemaController.setName(nameUti);
 
             Stage stage = new Stage();
             stage.setTitle("Liste cinéma");
@@ -124,11 +126,12 @@ public class MenuController {
         try {
 
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_ajout_section.fxml"));
+                    getClass().getResource("/cinema/views/page_ajout_cinema.fxml"));
             Parent root = fxmlLoader.load();
 
             Stage stage = new Stage();
-            stage.setTitle("Ajout d'une Section");
+
+            stage.setTitle("Ajouter un cinéma");
             stage.setScene(new Scene(root));
 
             stage.initModality(Modality.APPLICATION_MODAL);
@@ -148,18 +151,17 @@ public class MenuController {
 
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_liste_cours.fxml"));
+                    getClass().getResource("/cinema/views/page_liste_salle.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Créer une nouvelle fenêtre (Stage)
+            // Correction ligne 18 :
+            // on corrige uniquement le libellé affiché à l'utilisateur.
             Stage stage = new Stage();
-            stage.setTitle("Liste cours");
+            stage.setTitle("Liste des salles");
             stage.setScene(new Scene(root));
 
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
 
         } catch (Exception e) {
@@ -179,18 +181,17 @@ public class MenuController {
 
             // Charger le fichier FXML
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_ajout_cours.fxml"));
+                    getClass().getResource("/cinema/views/page_ajout_salle.fxml"));
             Parent root = fxmlLoader.load();
 
-            // Créer une nouvelle fenêtre (Stage)
+            // Correction ligne 18 :
+            // on corrige uniquement le titre de la fenêtre.
             Stage stage = new Stage();
-            stage.setTitle("Ajout d'un cours");
+            stage.setTitle("Ajouter une salle");
             stage.setScene(new Scene(root));
 
-            // Configurer la fenêtre en tant que modal
             stage.initModality(Modality.APPLICATION_MODAL);
 
-            // Afficher la fenêtre et attendre qu'elle se ferme
             stage.show();
 
         } catch (Exception e) {
