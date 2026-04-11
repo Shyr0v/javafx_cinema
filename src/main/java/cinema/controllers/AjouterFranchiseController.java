@@ -28,8 +28,10 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
     @FXML
     private TextField tfNomFranchise, tfSiegeSocial;
+
     @FXML
     private Button bRetour;
+
     @FXML
     private ListView<Utilisateur> lvGerantFranchise;
 
