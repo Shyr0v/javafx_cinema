@@ -126,7 +126,7 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
         Utilisateur user = null;
 
         try {
-            String sql = "SELECT * FROM utilisateur WHERE login = ? AND mdp = ?";
+            String sql = "SELECT * FROM utilisateur WHERE login = ? AND mdp = crypt(?, mdp)";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, login);
             ps.setString(2, password);

@@ -52,24 +52,17 @@ public class ConnexionController implements Initializable {
     }
 
     private void showAccueil(Utilisateur user) {
-        Stage stageP = (Stage) bConnexion.getScene().getWindow();
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            AccueilController accueilController = fxmlLoader.getController();
+            AccueilController accueilController = loader.getController();
             accueilController.setUtilisateur(user);
             accueilController.setBienvenue();
 
-            Stage stage = new Stage();
-            stage.setTitle("Accueil Gestion de franchises");
+            Stage stage = (Stage) bConnexion.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
-            stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
