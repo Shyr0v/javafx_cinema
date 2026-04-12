@@ -24,6 +24,8 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 
 public class ListeCinemaController extends MenuController implements Initializable {
 
@@ -128,30 +130,44 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
-            private Button btn = new Button("Supprimer");
+            private final Button btn = new Button("Supprimer");
+            // crée le bouton "Supprimer" pour chaque ligne
 
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    FranchiseDAO etudiantDAO = new FranchiseDAO();
-                    if (etudiantDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
-                        try {
-                            FXMLLoader fxmlLoader = new FXMLLoader(
-                                    getClass().getResource("/cinema/views/popup_cinema.fxml"));
-                            Parent root = fxmlLoader.load();
+                    // récupère le cinéma de la ligne cliquée
 
-                            Stage stage = new Stage();
-                            stage.setTitle("Pop-up");
-                            stage.setScene(new Scene(root));
-                            stage.initModality(Modality.APPLICATION_MODAL);
-                            stage.show();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                    FranchiseDAO franchiseDAO = new FranchiseDAO();
+                    // crée l'accès aux données des franchises
+
+                    if (franchiseDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
+                        // garde la condition actuelle de suppression
+
+                        Alert alert = new Alert(AlertType.ERROR);
+                        // crée une alerte d'erreur
+
+                        alert.setTitle("Suppression impossible");
+                        // définit le titre de l'alerte
+
+                        alert.setHeaderText(null);
+                        // enlève le texte d'en-tête
+
+                        alert.setContentText("Ce cinéma ne peut pas être supprimé.");
+                        // définit le message affiché
+
+                        alert.showAndWait();
+                        // affiche l'alerte et attend sa fermeture
+
                     } else {
                         tvCinema.getItems().remove(cinema);
+                        // retire le cinéma du tableau
+
                         CinemaDAO cinemaDAO = new CinemaDAO();
+                        // crée l'accès aux données des cinémas
+
                         cinemaDAO.delete(cinema);
+                        // supprime le cinéma en base
                     }
                 });
             }
@@ -159,7 +175,10 @@ public class ListeCinemaController extends MenuController implements Initializab
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
+                // met à jour la cellule
+
                 setGraphic(empty ? null : btn);
+                // affiche le bouton si la ligne existe
             }
         });
     }
