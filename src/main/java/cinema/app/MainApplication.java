@@ -1,39 +1,38 @@
 package cinema.app;
 
+import cinema.controllers.Navigation;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 public class MainApplication extends Application {
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        try {
-            // chargement de la vue de connexion
-            Parent parent = FXMLLoader.load(getClass().getResource("/cinema/views/page_connexion.fxml"));
+    public void start(Stage primaryStage) {
+        // méthode appelée au démarrage de l'application
 
-            // configuration de la scène
-            Scene scene = new Scene(parent);
+        primaryStage.setTitle("Application de gestion de franchise - Authentification");
+        // définit le titre de la fenêtre principale
 
-            // paramétrage du stage (fenêtre principale)
-            primaryStage.setTitle("Application de gestion de franchise - Authentification");
-            primaryStage.setResizable(false);
-            primaryStage.centerOnScreen();
-            primaryStage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
-            primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
+        // empêche le redimensionnement
 
-            primaryStage.setAlwaysOnTop(true);   // Toujours au-dessus des autres fenêtres
-            // affichage
-            primaryStage.show();
-            primaryStage.setAlwaysOnTop(false);
-        } // end try
-        catch (IOException e) {
-            e.printStackTrace();
-        }
+        primaryStage.centerOnScreen();
+        // centre la fenêtre à l'écran
+
+        primaryStage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
+        // ajoute une icône à la fenêtre
+
+        Navigation.setPrimaryStage(primaryStage);
+        // enregistre la fenêtre principale dans la classe Navigation
+
+        Navigation.clearHistory();
+        // vide l'historique de navigation
+
+        Navigation.clearParams();
+        // vide les paramètres de navigation
+
+        Navigation.goTo("/cinema/views/page_connexion.fxml");
+        // ouvre l'écran de connexion via la classe Navigation
     }
 }
