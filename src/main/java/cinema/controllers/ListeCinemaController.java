@@ -131,43 +131,38 @@ public class ListeCinemaController extends MenuController implements Initializab
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
             private final Button btn = new Button("Supprimer");
-            // crée le bouton "Supprimer" pour chaque ligne
+            // crée le bouton supprimer pour chaque ligne
 
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
                     // récupère le cinéma de la ligne cliquée
 
-                    FranchiseDAO franchiseDAO = new FranchiseDAO();
-                    // crée l'accès aux données des franchises
-
-                    if (franchiseDAO.getNbFranchiseByIdGerant(cinema.getIdCinema()) >= 1) {
-                        // garde la condition actuelle de suppression
-
-                        Alert alert = new Alert(AlertType.ERROR);
-                        // crée une alerte d'erreur
-
-                        alert.setTitle("Suppression impossible");
-                        // définit le titre de l'alerte
-
-                        alert.setHeaderText(null);
-                        // enlève le texte d'en-tête
-
-                        alert.setContentText("Ce cinéma ne peut pas être supprimé.");
-                        // définit le message affiché
-
-                        alert.showAndWait();
-                        // affiche l'alerte et attend sa fermeture
-
-                    } else {
-                        tvCinema.getItems().remove(cinema);
-                        // retire le cinéma du tableau
-
+                    try {
                         CinemaDAO cinemaDAO = new CinemaDAO();
                         // crée l'accès aux données des cinémas
 
                         cinemaDAO.delete(cinema);
                         // supprime le cinéma en base
+
+                        tvCinema.getItems().remove(cinema);
+                        // retire le cinéma du tableau
+
+                    } catch (Exception e) {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        // crée une alerte d'erreur
+
+                        alert.setTitle("Suppression impossible");
+                        // définit le titre
+
+                        alert.setHeaderText(null);
+                        // enlève l'en-tête
+
+                        alert.setContentText("Le cinéma n'a pas pu être supprimé.");
+                        // définit le message affiché
+
+                        alert.showAndWait();
+                        // affiche l'alerte
                     }
                 });
             }
