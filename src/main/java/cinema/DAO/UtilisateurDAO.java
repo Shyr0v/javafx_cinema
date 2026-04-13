@@ -15,10 +15,13 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     public boolean create(Utilisateur obj) {
         boolean result = false;
         try {
-            String sql = "INSERT INTO utilisateur(login, mdp) VALUES(?,?)";
+            String sql = "INSERT INTO utilisateur(nom, prenom, login, mdp) VALUES(?,?,?,?)";
             PreparedStatement ps = this.connect.prepareStatement(sql);
-            ps.setString(1, obj.getLogin());
-            ps.setString(2, obj.getMdp());
+            ps.setString(1, obj.getNom());
+            ps.setString(2, obj.getPrenom());
+            ps.setString(3, obj.getLogin());
+            ps.setString(4, obj.getMdp());
+
             int rowsInserted = ps.executeUpdate();
             if (rowsInserted > 0) {
                 result = true;
@@ -51,11 +54,14 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     public boolean update(Utilisateur obj) {
         boolean result = false;
         try {
-            String sql = "UPDATE Utilisateur SET login=?, mdp=? WHERE id_utilisateur = ?";
+            String sql = "UPDATE utilisateur SET nom = ?, prenom = ?, login = ?, mdp = ? WHERE id_utilisateur = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
-            ps.setString(1, obj.getLogin());
-            ps.setString(2, obj.getMdp());
-            ps.setInt(3, obj.getIdUtilisateur());
+            ps.setString(1, obj.getNom());
+            ps.setString(2, obj.getPrenom());
+            ps.setString(3, obj.getLogin());
+            ps.setString(4, obj.getMdp());
+            ps.setInt(5, obj.getIdUtilisateur());
+
             int rowsUpdated = ps.executeUpdate();
             if (rowsUpdated > 0) {
                 result = true;
@@ -67,7 +73,8 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     }
 
     private Utilisateur hydrate(ResultSet resultSet) throws SQLException {
-        return new Utilisateur(resultSet.getInt("id_utilisateur"),
+        return new Utilisateur(
+                resultSet.getInt("id_utilisateur"),
                 resultSet.getString("nom"),
                 resultSet.getString("prenom"),
                 resultSet.getString("login"),
@@ -78,10 +85,12 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     public List<Utilisateur> findAll() {
         List<Utilisateur> mesUtilisateurs = new ArrayList<>();
         Utilisateur utilisateur;
+
         try {
             String sql = "SELECT * FROM utilisateur";
             Statement statement = this.connect.createStatement();
             ResultSet rs = statement.executeQuery(sql);
+
             while (rs.next()) {
                 utilisateur = hydrate(rs);
                 mesUtilisateurs.add(utilisateur);
@@ -95,17 +104,18 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
     @Override
     public Utilisateur find(int idUtilisateur) {
         Utilisateur user;
+
         try {
             String sql = "SELECT * FROM utilisateur WHERE id_utilisateur = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setInt(1, idUtilisateur);
             ResultSet result = ps.executeQuery();
+
             if (result.next()) {
                 user = hydrate(result);
             } else {
                 user = null;
             }
-
         } catch (SQLException e) {
             return null;
         }
@@ -114,18 +124,23 @@ public class UtilisateurDAO extends DAO<Utilisateur> {
 
     public Utilisateur authenticate(String login, String password) {
         Utilisateur user = null;
+
         try {
-            String sql = "SELECT * FROM utilisateur WHERE login =? AND mdp=?";
+            String sql = "SELECT * FROM utilisateur WHERE login = ? AND mdp = crypt(?, mdp)";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setString(1, login);
             ps.setString(2, password);
+
             ResultSet result = ps.executeQuery();
+
             if (result.next()) {
                 user = hydrate(result);
             }
+
         } catch (SQLException e) {
-            return null;
+            e.printStackTrace();
         }
+
         return user;
     }
 }

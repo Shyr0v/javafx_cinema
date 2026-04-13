@@ -5,9 +5,10 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import cinema.BO.Cinema;
+import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,9 +24,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 
 public class ListeCinemaController extends MenuController implements Initializable {
 
@@ -50,8 +48,7 @@ public class ListeCinemaController extends MenuController implements Initializab
         btnModif();
         btnSupp();
 
-        ObservableList<Cinema> data = getCinema();
-        tvCinema.setItems(data);
+        tvCinema.setItems(getCinema());
     }
 
     private ObservableList<Cinema> getCinema() {
@@ -62,15 +59,19 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     private String getNomFranchise(int idFranchise) {
         FranchiseDAO franchiseDAO = new FranchiseDAO();
-        if (franchiseDAO.find(idFranchise) != null) {
-            return franchiseDAO.find(idFranchise).getNomFranchise();
+        Franchise franchise = franchiseDAO.find(idFranchise);
+
+        if (franchise != null) {
+            return franchise.getNomFranchise();
         }
         return "";
     }
 
+    @FXML
     public void bRetourClick(ActionEvent actionEvent) {
         Stage stageP = (Stage) bRetour.getScene().getWindow();
         stageP.close();
+
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
@@ -81,10 +82,11 @@ public class ListeCinemaController extends MenuController implements Initializab
             accueilController.setBienvenue();
 
             Stage stage = new Stage();
-            stage.setTitle("Liste franchises");
+            stage.setTitle("Accueil");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -99,6 +101,7 @@ public class ListeCinemaController extends MenuController implements Initializab
                     Cinema cinema = getTableView().getItems().get(getIndex());
                     Stage stageP = (Stage) bRetour.getScene().getWindow();
                     stageP.close();
+
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
@@ -114,6 +117,7 @@ public class ListeCinemaController extends MenuController implements Initializab
                         stage.setScene(new Scene(root));
                         stage.initModality(Modality.APPLICATION_MODAL);
                         stage.show();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -131,38 +135,15 @@ public class ListeCinemaController extends MenuController implements Initializab
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
             private final Button btn = new Button("Supprimer");
-            // crée le bouton supprimer pour chaque ligne
 
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    // récupère le cinéma de la ligne cliquée
+                    CinemaDAO cinemaDAO = new CinemaDAO();
 
-                    try {
-                        CinemaDAO cinemaDAO = new CinemaDAO();
-                        // crée l'accès aux données des cinémas
-
-                        cinemaDAO.delete(cinema);
-                        // supprime le cinéma en base
-
+                    boolean deleted = cinemaDAO.delete(cinema);
+                    if (deleted) {
                         tvCinema.getItems().remove(cinema);
-                        // retire le cinéma du tableau
-
-                    } catch (Exception e) {
-                        Alert alert = new Alert(AlertType.ERROR);
-                        // crée une alerte d'erreur
-
-                        alert.setTitle("Suppression impossible");
-                        // définit le titre
-
-                        alert.setHeaderText(null);
-                        // enlève l'en-tête
-
-                        alert.setContentText("Le cinéma n'a pas pu être supprimé.");
-                        // définit le message affiché
-
-                        alert.showAndWait();
-                        // affiche l'alerte
                     }
                 });
             }
@@ -170,10 +151,7 @@ public class ListeCinemaController extends MenuController implements Initializab
             @Override
             protected void updateItem(Void item, boolean empty) {
                 super.updateItem(item, empty);
-                // met à jour la cellule
-
                 setGraphic(empty ? null : btn);
-                // affiche le bouton si la ligne existe
             }
         });
     }
