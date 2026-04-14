@@ -18,7 +18,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class AjouterCinemaController extends MenuController implements Initializable {
@@ -41,16 +40,13 @@ public class AjouterCinemaController extends MenuController implements Initializ
     }
 
     private ObservableList<Franchise> getFranchiseList() {
-
         FranchiseDAO franchiseDAO = new FranchiseDAO();
         List<Franchise> franchises = franchiseDAO.findAll();
-
         return FXCollections.observableArrayList(franchises);
     }
 
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
-
         String denom = tfDenomination.getText().trim();
         String adresse = tfAdresse.getText().trim();
         String ville = tfVille.getText().trim();
@@ -60,13 +56,7 @@ public class AjouterCinemaController extends MenuController implements Initializ
             return;
         }
 
-        Cinema cinema = new Cinema(
-                0,
-                denom,
-                adresse,
-                ville,
-                franchise.getIdFranchise()
-        );
+        Cinema cinema = new Cinema(0, denom, adresse, ville, franchise.getIdFranchise());
 
         CinemaDAO cinemaDAO = new CinemaDAO();
         cinemaDAO.create(cinema);
@@ -87,22 +77,18 @@ public class AjouterCinemaController extends MenuController implements Initializ
 
     @FXML
     public void bRetourClick(ActionEvent event) {
-
-        Stage stageP = (Stage) tfDenomination.getScene().getWindow();
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            ListeCinemaController controller = fxmlLoader.getController();
+            ListeCinemaController controller = loader.getController();
             controller.setName(nameUti);
 
-            Stage stage = new Stage();
-            stage.setTitle("Liste cinémas");
+            Stage stage = (Stage) tfDenomination.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Liste cinémas");
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {

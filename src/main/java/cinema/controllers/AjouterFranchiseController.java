@@ -37,8 +37,7 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        ObservableList<Utilisateur> utilisateurs = getUtilisateurList();
-        lvGerantFranchise.setItems(utilisateurs);
+        lvGerantFranchise.setItems(getUtilisateurList());
     }
 
     private ObservableList<Utilisateur> getUtilisateurList() {
@@ -54,12 +53,14 @@ public class AjouterFranchiseController extends MenuController implements Initia
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
             Parent root = loader.load();
 
-            AccueilController accueilController = loader.getController();
-            accueilController.setName(nameUti);
-            accueilController.setBienvenue();
+            AccueilController controller = loader.getController();
+            controller.setName(nameUti);
+            controller.setBienvenue();
 
             Stage stage = (Stage) bRetour.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setTitle("Accueil");
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
@@ -78,11 +79,7 @@ public class AjouterFranchiseController extends MenuController implements Initia
             return;
         }
 
-        Franchise franchise = new Franchise(
-                0,
-                nom,
-                siege,
-                gerant.getIdUtilisateur());
+        Franchise franchise = new Franchise(0, nom, siege, gerant.getIdUtilisateur());
 
         FranchiseDAO franchiseDAO = new FranchiseDAO();
         boolean controle = franchiseDAO.create(franchise);
@@ -98,12 +95,8 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
     @FXML
     public void bEffacerClick(ActionEvent event) {
-        if (tfNomFranchise != null) {
-            tfNomFranchise.clear();
-        }
-        if (tfSiegeSocial != null) {
-            tfSiegeSocial.clear();
-        }
+        tfNomFranchise.clear();
+        tfSiegeSocial.clear();
         lvGerantFranchise.getSelectionModel().clearSelection();
     }
 
@@ -116,6 +109,7 @@ public class AjouterFranchiseController extends MenuController implements Initia
 
         stage.setScene(new Scene(root, 320, 120));
         stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setResizable(false);
         stage.showAndWait();
     }
 }

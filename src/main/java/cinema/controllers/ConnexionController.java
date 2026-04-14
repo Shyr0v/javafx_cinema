@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -63,6 +62,8 @@ public class ConnexionController implements Initializable {
 
             Stage stage = (Stage) bConnexion.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setTitle("Accueil Gestion de franchises");
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
@@ -73,9 +74,9 @@ public class ConnexionController implements Initializable {
     @FXML
     private void showError() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/ErreurConnexion.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
             Stage stage = new Stage();
             stage.setTitle("Erreur de connexion");

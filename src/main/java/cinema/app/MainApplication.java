@@ -12,16 +12,20 @@ public class MainApplication extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/cinema/views/page_connexion.fxml"));
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/cinema/views/page_connexion.fxml"));
             Parent root = loader.load();
 
             primaryStage.setTitle("Application de gestion de franchise - Authentification");
             primaryStage.setScene(new Scene(root));
-            primaryStage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
-            primaryStage.setResizable(false);
 
-            Navigation.setStage(primaryStage);
+            // 🔥 AJOUT DU LOGO ICI
+            primaryStage.getIcons().add(
+                    new Image("/cinema/images/cinema_logo.png"));
+
+            primaryStage.setResizable(false);
 
             primaryStage.show();
 
@@ -29,4 +33,5 @@ public class MainApplication extends Application {
             e.printStackTrace();
         }
     }
+
 }
