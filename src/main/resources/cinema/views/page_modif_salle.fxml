@@ -11,7 +11,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/22"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="cinema.controllers.AjouterSalleController"
+      fx:controller="cinema.controllers.ModifierSalleController"
       alignment="CENTER"
       spacing="15.0"
       prefHeight="380.0"
@@ -22,7 +22,7 @@
     </padding>
 
     <children>
-        <Label text="AJOUT D'UNE SALLE">
+        <Label text="MODIFICATION D'UNE SALLE">
             <font><Font size="20.0" /></font>
         </Label>
 
@@ -40,10 +40,10 @@
 
         <HBox alignment="CENTER" spacing="15.0">
             <children>
+                <Button fx:id="bEnregistrer" mnemonicParsing="false" onAction="#bEnregistrerClick"
+                        prefWidth="150.0" text="ENREGISTRER" />
                 <Button fx:id="bRetour" mnemonicParsing="false" onAction="#bRetourClick"
                         prefWidth="150.0" text="RETOUR" />
-                <Button mnemonicParsing="false" onAction="#bEnregistrerClick"
-                        prefWidth="150.0" text="ENREGISTRER" />
             </children>
         </HBox>
     </children>
