@@ -4,21 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update ConnexionController et UtilisateurDAO">
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/header_global.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_accueil.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_accueil.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -152,7 +143,10 @@
       <workItem from="1774875273023" duration="477000" />
       <workItem from="1774945881378" duration="10811000" />
       <workItem from="1775908578536" duration="9024000" />
-      <workItem from="1776083000669" duration="13882000" />
+      <workItem from="1776083000669" duration="14190000" />
+      <workItem from="1776760238301" duration="2794000" />
+      <workItem from="1776944048461" duration="41000" />
+      <workItem from="1777288625918" duration="3272000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -226,7 +220,15 @@
       <option name="project" value="LOCAL" />
       <updated>1775916325695</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ajout du logo dans toute les views et retirer le open and close constent">
+      <option name="closed" value="true" />
+      <created>1776171374819</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776171374819</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -253,7 +255,8 @@
     <MESSAGE value="Update Accueil" />
     <MESSAGE value="Update DBManager and main.css" />
     <MESSAGE value="Update ConnexionController et UtilisateurDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update ConnexionController et UtilisateurDAO" />
+    <MESSAGE value="Ajout du logo dans toute les views et retirer le open and close constent" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout du logo dans toute les views et retirer le open and close constent" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
