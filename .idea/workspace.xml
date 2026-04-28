@@ -4,12 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/header_global.fxml" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Navigation fluide et autres">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cinema/utils/AppLogger.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7ecbd468-d94a-4987-8e13-639c2a9b1db1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7ecbd468-d94a-4987-8e13-639c2a9b1db1.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/log.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/log.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +47,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -146,7 +150,8 @@
       <workItem from="1776083000669" duration="14190000" />
       <workItem from="1776760238301" duration="2794000" />
       <workItem from="1776944048461" duration="41000" />
-      <workItem from="1777288625918" duration="3272000" />
+      <workItem from="1777288625918" duration="3594000" />
+      <workItem from="1777367140024" duration="6569000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -228,7 +233,15 @@
       <option name="project" value="LOCAL" />
       <updated>1776171374819</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Navigation fluide et autres">
+      <option name="closed" value="true" />
+      <created>1777294480524</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1777294480524</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -256,7 +269,8 @@
     <MESSAGE value="Update DBManager and main.css" />
     <MESSAGE value="Update ConnexionController et UtilisateurDAO" />
     <MESSAGE value="Ajout du logo dans toute les views et retirer le open and close constent" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout du logo dans toute les views et retirer le open and close constent" />
+    <MESSAGE value="Navigation fluide et autres" />
+    <option name="LAST_COMMIT_MESSAGE" value="Navigation fluide et autres" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

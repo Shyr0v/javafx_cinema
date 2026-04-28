@@ -8,6 +8,7 @@ import cinema.BO.Cinema;
 import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
+import cinema.utils.AppLogger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -23,13 +24,7 @@ import javafx.stage.Stage;
 public class AjouterCinemaController extends MenuController implements Initializable {
 
     @FXML
-    private TextField tfDenomination;
-
-    @FXML
-    private TextField tfAdresse;
-
-    @FXML
-    private TextField tfVille;
+    private TextField tfDenomination, tfAdresse, tfVille;
 
     @FXML
     private ListView<Franchise> lvFranchise;
@@ -40,9 +35,8 @@ public class AjouterCinemaController extends MenuController implements Initializ
     }
 
     private ObservableList<Franchise> getFranchiseList() {
-        FranchiseDAO franchiseDAO = new FranchiseDAO();
-        List<Franchise> franchises = franchiseDAO.findAll();
-        return FXCollections.observableArrayList(franchises);
+        FranchiseDAO dao = new FranchiseDAO();
+        return FXCollections.observableArrayList(dao.findAll());
     }
 
     @FXML
@@ -53,26 +47,24 @@ public class AjouterCinemaController extends MenuController implements Initializ
         Franchise franchise = lvFranchise.getSelectionModel().getSelectedItem();
 
         if (denom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || franchise == null) {
+            AppLogger.erreur("Ajout cinéma échoué : champs manquants");
             return;
         }
 
         Cinema cinema = new Cinema(0, denom, adresse, ville, franchise.getIdFranchise());
+        CinemaDAO dao = new CinemaDAO();
 
-        CinemaDAO cinemaDAO = new CinemaDAO();
-        cinemaDAO.create(cinema);
+        boolean ok = dao.create(cinema);
 
-        tfDenomination.clear();
-        tfAdresse.clear();
-        tfVille.clear();
-        lvFranchise.getSelectionModel().clearSelection();
-    }
+        if (ok) {
+            AppLogger.action("AJOUT", "cinema",
+                    "Ajout cinéma : " + denom + " / ville=" + ville);
 
-    @FXML
-    public void bEffacerClick(ActionEvent event) {
-        tfDenomination.clear();
-        tfAdresse.clear();
-        tfVille.clear();
-        lvFranchise.getSelectionModel().clearSelection();
+            tfDenomination.clear();
+            tfAdresse.clear();
+            tfVille.clear();
+            lvFranchise.getSelectionModel().clearSelection();
+        }
     }
 
     @FXML
@@ -82,17 +74,15 @@ public class AjouterCinemaController extends MenuController implements Initializ
                     getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = loader.load();
 
-            ListeCinemaController controller = loader.getController();
-            controller.setName(nameUti);
-
             Stage stage = (Stage) tfDenomination.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Liste cinémas");
-            stage.setResizable(false);
+            Navigation.applyLogo(stage);
             stage.show();
 
         } catch (Exception e) {
             e.printStackTrace();
+            AppLogger.erreur("Erreur retour liste cinema");
         }
     }
 }
