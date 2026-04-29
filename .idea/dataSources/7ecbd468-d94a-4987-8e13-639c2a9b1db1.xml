@@ -4347,92 +4347,37 @@ false Zulu
     <routine id="276" parent="275" name="insert_log_function">
       <ArgumentsDefinition>p_table_name character varying, p_operation character varying, p_ancien_contenu text, p_nouveau_contenu text</ArgumentsDefinition>
       <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24859</ObjectId>
+      <ObjectId>25125</ObjectId>
       <ResultsDefinition>void</ResultsDefinition>
       <Rows>0.0</Rows>
-      <SourceTextLength>478</SourceTextLength>
-      <StateNumber>1036</StateNumber>
+      <SourceTextLength>558</SourceTextLength>
+      <StateNumber>1251</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="277" parent="275" name="set_current_user_id">
+    <routine id="277" parent="275" name="process_generic_log">
+      <DetailsLevel>3</DetailsLevel>
+      <ObjectId>24995</ObjectId>
+      <PgRoutineKind>pg-trigger</PgRoutineKind>
+      <ResultsDefinition>trigger</ResultsDefinition>
+      <Rows>0.0</Rows>
+      <SourceTextLength>993</SourceTextLength>
+      <StateNumber>1142</StateNumber>
+      <LanguageName>plpgsql</LanguageName>
+      <OwnerName>postgres</OwnerName>
+    </routine>
+    <routine id="278" parent="275" name="set_current_user_id">
       <ArgumentsDefinition>user_id integer</ArgumentsDefinition>
       <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24858</ObjectId>
+      <ObjectId>25124</ObjectId>
       <ResultsDefinition>void</ResultsDefinition>
       <Rows>0.0</Rows>
       <SourceTextLength>81</SourceTextLength>
-      <StateNumber>1035</StateNumber>
+      <StateNumber>1250</StateNumber>
       <LanguageName>plpgsql</LanguageName>
       <OwnerName>postgres</OwnerName>
     </routine>
-    <routine id="278" parent="275" name="trigger_cinema_create">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24896</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>348</SourceTextLength>
-      <StateNumber>1055</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <routine id="279" parent="275" name="trigger_cinema_delete">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24900</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>348</SourceTextLength>
-      <StateNumber>1059</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <routine id="280" parent="275" name="trigger_cinema_update">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24898</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>574</SourceTextLength>
-      <StateNumber>1057</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <routine id="281" parent="275" name="trigger_franchise_create">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24890</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>318</SourceTextLength>
-      <StateNumber>1049</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <routine id="282" parent="275" name="trigger_franchise_delete">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24894</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>318</SourceTextLength>
-      <StateNumber>1053</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <routine id="283" parent="275" name="trigger_franchise_update">
-      <DetailsLevel>3</DetailsLevel>
-      <ObjectId>24892</ObjectId>
-      <PgRoutineKind>pg-trigger</PgRoutineKind>
-      <ResultsDefinition>trigger</ResultsDefinition>
-      <Rows>0.0</Rows>
-      <SourceTextLength>511</SourceTextLength>
-      <StateNumber>1051</StateNumber>
-      <LanguageName>plpgsql</LanguageName>
-      <OwnerName>postgres</OwnerName>
-    </routine>
-    <sequence id="284" parent="275" name="cinema_id_cinema_seq">
+    <sequence id="279" parent="275" name="cinema_id_cinema_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16708</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4441,7 +4386,7 @@ false Zulu
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="285" parent="275" name="franchise_id_franchise_seq">
+    <sequence id="280" parent="275" name="franchise_id_franchise_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16692</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4450,7 +4395,7 @@ false Zulu
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="286" parent="275" name="salle_id_salle_seq">
+    <sequence id="281" parent="275" name="salle_id_salle_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16725</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4459,7 +4404,7 @@ false Zulu
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <sequence id="287" parent="275" name="utilisateur_id_utilisateur_seq">
+    <sequence id="282" parent="275" name="utilisateur_id_utilisateur_seq">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16679</ObjectId>
       <SequenceIdentity>1</SequenceIdentity>
@@ -4468,94 +4413,74 @@ false Zulu
       <StoredType>integer|0s</StoredType>
       <OwnerName>postgres</OwnerName>
     </sequence>
-    <table id="288" parent="275" name="cinema">
+    <table id="283" parent="275" name="cinema">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16709</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="289" parent="275" name="franchise">
+    <table id="284" parent="275" name="franchise">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16693</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="290" parent="275" name="log">
+    <table id="285" parent="275" name="log">
       <DetailsLevel>2</DetailsLevel>
-      <ObjectId>24873</ObjectId>
-      <StateNumber>1034</StateNumber>
+      <ObjectId>25139</ObjectId>
+      <StateNumber>1249</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="291" parent="275" name="salle">
+    <table id="286" parent="275" name="salle">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16726</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <table id="292" parent="275" name="utilisateur">
+    <table id="287" parent="275" name="utilisateur">
       <DetailsLevel>2</DetailsLevel>
       <ObjectId>16680</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>2</AccessMethodId>
       <OwnerName>postgres</OwnerName>
     </table>
-    <argument id="293" parent="276">
+    <argument id="288" parent="276">
       <ArgumentDirection>R</ArgumentDirection>
       <StoredType>void|0s</StoredType>
     </argument>
-    <argument id="294" parent="276" name="p_table_name">
+    <argument id="289" parent="276" name="p_table_name">
       <Position>1</Position>
       <StoredType>varchar|0s</StoredType>
     </argument>
-    <argument id="295" parent="276" name="p_operation">
+    <argument id="290" parent="276" name="p_operation">
       <Position>2</Position>
       <StoredType>varchar|0s</StoredType>
     </argument>
-    <argument id="296" parent="276" name="p_ancien_contenu">
+    <argument id="291" parent="276" name="p_ancien_contenu">
       <Position>3</Position>
       <StoredType>text|0s</StoredType>
     </argument>
-    <argument id="297" parent="276" name="p_nouveau_contenu">
+    <argument id="292" parent="276" name="p_nouveau_contenu">
       <Position>4</Position>
       <StoredType>text|0s</StoredType>
     </argument>
-    <argument id="298" parent="277">
+    <argument id="293" parent="277">
+      <ArgumentDirection>R</ArgumentDirection>
+      <StoredType>trigger|0s</StoredType>
+    </argument>
+    <argument id="294" parent="278">
       <ArgumentDirection>R</ArgumentDirection>
       <StoredType>void|0s</StoredType>
     </argument>
-    <argument id="299" parent="277" name="user_id">
+    <argument id="295" parent="278" name="user_id">
       <Position>1</Position>
       <StoredType>integer|0s</StoredType>
     </argument>
-    <argument id="300" parent="278">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <argument id="301" parent="279">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <argument id="302" parent="280">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <argument id="303" parent="281">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <argument id="304" parent="282">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <argument id="305" parent="283">
-      <ArgumentDirection>R</ArgumentDirection>
-      <StoredType>trigger|0s</StoredType>
-    </argument>
-    <column id="306" parent="288" name="id_cinema">
+    <column id="296" parent="283" name="id_cinema">
       <DefaultExpression>nextval(&apos;cinema_id_cinema_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4564,33 +4489,33 @@ false Zulu
       <SequenceId>16708</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="307" parent="288" name="denomination">
+    <column id="297" parent="283" name="denomination">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="308" parent="288" name="adresse">
+    <column id="298" parent="283" name="adresse">
       <Position>3</Position>
       <StateNumber>993</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="309" parent="288" name="ville">
+    <column id="299" parent="283" name="ville">
       <Position>4</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="310" parent="288" name="id_franchise">
+    <column id="300" parent="283" name="id_franchise">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>993</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="311" parent="288" name="fk_franchise_cinema">
+    <foreign-key id="301" parent="283" name="fk_franchise_cinema">
       <ColNames>id_franchise</ColNames>
       <ObjectId>16720</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -4598,7 +4523,7 @@ false Zulu
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16693</RefTableId>
     </foreign-key>
-    <index id="312" parent="288" name="cinema_pkey">
+    <index id="302" parent="283" name="cinema_pkey">
       <ColNames>id_cinema</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16718</ObjectId>
@@ -4607,38 +4532,20 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="313" parent="288" name="idx_cinema_franchise">
+    <index id="303" parent="283" name="idx_cinema_franchise">
       <ColNames>id_franchise</ColNames>
       <ObjectId>16741</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="314" parent="288" name="cinema_pkey">
+    <key id="304" parent="283" name="cinema_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16719</ObjectId>
       <Primary>1</Primary>
       <StateNumber>993</StateNumber>
       <UnderlyingIndexId>16718</UnderlyingIndexId>
     </key>
-    <trigger id="315" parent="288" name="cinema_create">
-      <Events>I</Events>
-      <ObjectId>24897</ObjectId>
-      <StateNumber>1056</StateNumber>
-      <CallRoutineId>24896</CallRoutineId>
-    </trigger>
-    <trigger id="316" parent="288" name="cinema_update">
-      <Events>U</Events>
-      <ObjectId>24899</ObjectId>
-      <StateNumber>1058</StateNumber>
-      <CallRoutineId>24898</CallRoutineId>
-    </trigger>
-    <trigger id="317" parent="288" name="cinema_delete">
-      <Events>D</Events>
-      <ObjectId>24901</ObjectId>
-      <StateNumber>1060</StateNumber>
-      <CallRoutineId>24900</CallRoutineId>
-    </trigger>
-    <column id="318" parent="289" name="id_franchise">
+    <column id="305" parent="284" name="id_franchise">
       <DefaultExpression>nextval(&apos;franchise_id_franchise_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4647,26 +4554,26 @@ false Zulu
       <SequenceId>16692</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="319" parent="289" name="nom_franchise">
+    <column id="306" parent="284" name="nom_franchise">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="320" parent="289" name="siege_social">
+    <column id="307" parent="284" name="siege_social">
       <Position>3</Position>
       <StateNumber>993</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="321" parent="289" name="id_gerant">
+    <column id="308" parent="284" name="id_gerant">
       <Position>4</Position>
       <StateNumber>993</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="322" parent="289" name="fk_gerant_franchise">
+    <foreign-key id="309" parent="284" name="fk_gerant_franchise">
       <ColNames>id_gerant</ColNames>
       <ObjectId>16703</ObjectId>
       <OnDelete>set-null</OnDelete>
@@ -4674,7 +4581,7 @@ false Zulu
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16680</RefTableId>
     </foreign-key>
-    <index id="323" parent="289" name="franchise_pkey">
+    <index id="310" parent="284" name="franchise_pkey">
       <ColNames>id_franchise</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16701</ObjectId>
@@ -4683,110 +4590,92 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="324" parent="289" name="idx_franchise_gerant">
+    <index id="311" parent="284" name="idx_franchise_gerant">
       <ColNames>id_gerant</ColNames>
       <ObjectId>16743</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="325" parent="289" name="franchise_pkey">
+    <key id="312" parent="284" name="franchise_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16702</ObjectId>
       <Primary>1</Primary>
       <StateNumber>993</StateNumber>
       <UnderlyingIndexId>16701</UnderlyingIndexId>
     </key>
-    <trigger id="326" parent="289" name="franchise_create">
-      <Events>I</Events>
-      <ObjectId>24891</ObjectId>
-      <StateNumber>1050</StateNumber>
-      <CallRoutineId>24890</CallRoutineId>
-    </trigger>
-    <trigger id="327" parent="289" name="franchise_update">
-      <Events>U</Events>
-      <ObjectId>24893</ObjectId>
-      <StateNumber>1052</StateNumber>
-      <CallRoutineId>24892</CallRoutineId>
-    </trigger>
-    <trigger id="328" parent="289" name="franchise_delete">
-      <Events>D</Events>
-      <ObjectId>24895</ObjectId>
-      <StateNumber>1054</StateNumber>
-      <CallRoutineId>24894</CallRoutineId>
-    </trigger>
-    <column id="329" parent="290" name="id_log">
+    <column id="313" parent="285" name="id_log">
       <DefaultExpression>nextval(&apos;log_id_log_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>integer|0s</StoredType>
-      <SequenceId>24872</SequenceId>
+      <SequenceId>25138</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="330" parent="290" name="table_name">
+    <column id="314" parent="285" name="table_name">
       <NotNull>1</NotNull>
       <Position>2</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="331" parent="290" name="operation">
+    <column id="315" parent="285" name="operation">
       <NotNull>1</NotNull>
       <Position>3</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="332" parent="290" name="date_action">
+    <column id="316" parent="285" name="date_action">
       <DefaultExpression>CURRENT_TIMESTAMP</DefaultExpression>
       <Position>4</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>timestamp|0s</StoredType>
       <TypeId>1114</TypeId>
     </column>
-    <column id="333" parent="290" name="ancien_contenu">
+    <column id="317" parent="285" name="ancien_contenu">
       <Position>5</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="334" parent="290" name="nouveau_contenu">
+    <column id="318" parent="285" name="nouveau_contenu">
       <Position>6</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>text|0s</StoredType>
       <TypeId>25</TypeId>
     </column>
-    <column id="335" parent="290" name="id_utilisateur">
+    <column id="319" parent="285" name="id_utilisateur">
       <Position>7</Position>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="336" parent="290" name="fk_log_utilisateur">
+    <foreign-key id="320" parent="285" name="fk_log_utilisateur">
       <ColNames>id_utilisateur</ColNames>
-      <ObjectId>24885</ObjectId>
+      <ObjectId>25151</ObjectId>
       <OnDelete>set-null</OnDelete>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16680</RefTableId>
     </foreign-key>
-    <index id="337" parent="290" name="log_pkey">
+    <index id="321" parent="285" name="log_pkey">
       <ColNames>id_log</ColNames>
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24883</ObjectId>
+      <ObjectId>25149</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1034</StateNumber>
+      <StateNumber>1249</StateNumber>
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="338" parent="290" name="log_pkey">
+    <key id="322" parent="285" name="log_pkey">
       <NameSurrogate>1</NameSurrogate>
-      <ObjectId>24884</ObjectId>
+      <ObjectId>25150</ObjectId>
       <Primary>1</Primary>
-      <StateNumber>1034</StateNumber>
-      <UnderlyingIndexId>24883</UnderlyingIndexId>
+      <StateNumber>1249</StateNumber>
+      <UnderlyingIndexId>25149</UnderlyingIndexId>
     </key>
-    <column id="339" parent="291" name="id_salle">
+    <column id="323" parent="286" name="id_salle">
       <DefaultExpression>nextval(&apos;salle_id_salle_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4795,34 +4684,34 @@ false Zulu
       <SequenceId>16725</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="340" parent="291" name="numero">
+    <column id="324" parent="286" name="numero">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>993</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="341" parent="291" name="description">
+    <column id="325" parent="286" name="description">
       <Position>3</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="342" parent="291" name="nb_places">
+    <column id="326" parent="286" name="nb_places">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>993</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <column id="343" parent="291" name="id_cinema">
+    <column id="327" parent="286" name="id_cinema">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>993</StateNumber>
       <StoredType>integer|0s</StoredType>
       <TypeId>23</TypeId>
     </column>
-    <foreign-key id="344" parent="291" name="fk_cinema">
+    <foreign-key id="328" parent="286" name="fk_cinema">
       <ColNames>id_cinema</ColNames>
       <ObjectId>16736</ObjectId>
       <OnDelete>cascade</OnDelete>
@@ -4830,7 +4719,7 @@ false Zulu
       <RefKeyColPositions>1</RefKeyColPositions>
       <RefTableId>16709</RefTableId>
     </foreign-key>
-    <index id="345" parent="291" name="salle_pkey">
+    <index id="329" parent="286" name="salle_pkey">
       <ColNames>id_salle</ColNames>
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16734</ObjectId>
@@ -4839,20 +4728,20 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <index id="346" parent="291" name="idx_salle_cinema">
+    <index id="330" parent="286" name="idx_salle_cinema">
       <ColNames>id_cinema</ColNames>
       <ObjectId>16742</ObjectId>
       <StateNumber>993</StateNumber>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="347" parent="291" name="salle_pkey">
+    <key id="331" parent="286" name="salle_pkey">
       <NameSurrogate>1</NameSurrogate>
       <ObjectId>16735</ObjectId>
       <Primary>1</Primary>
       <StateNumber>993</StateNumber>
       <UnderlyingIndexId>16734</UnderlyingIndexId>
     </key>
-    <column id="348" parent="292" name="id_utilisateur">
+    <column id="332" parent="287" name="id_utilisateur">
       <DefaultExpression>nextval(&apos;utilisateur_id_utilisateur_seq&apos;::regclass)</DefaultExpression>
       <NotNull>1</NotNull>
       <Position>1</Position>
@@ -4861,34 +4750,34 @@ false Zulu
       <SequenceId>16679</SequenceId>
       <TypeId>23</TypeId>
     </column>
-    <column id="349" parent="292" name="nom">
+    <column id="333" parent="287" name="nom">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="350" parent="292" name="prenom">
+    <column id="334" parent="287" name="prenom">
       <Position>3</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(100)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="351" parent="292" name="login">
+    <column id="335" parent="287" name="login">
       <NotNull>1</NotNull>
       <Position>4</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(50)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <column id="352" parent="292" name="mdp">
+    <column id="336" parent="287" name="mdp">
       <NotNull>1</NotNull>
       <Position>5</Position>
       <StateNumber>993</StateNumber>
       <StoredType>varchar(255)|0s</StoredType>
       <TypeId>1043</TypeId>
     </column>
-    <index id="353" parent="292" name="utilisateur_pk">
+    <index id="337" parent="287" name="utilisateur_pk">
       <ColNames>id_utilisateur</ColNames>
       <ObjectId>16690</ObjectId>
       <Primary>1</Primary>
@@ -4896,7 +4785,7 @@ false Zulu
       <Unique>1</Unique>
       <AccessMethodId>403</AccessMethodId>
     </index>
-    <key id="354" parent="292" name="utilisateur_pk">
+    <key id="338" parent="287" name="utilisateur_pk">
       <ObjectId>16691</ObjectId>
       <Primary>1</Primary>
       <StateNumber>993</StateNumber>

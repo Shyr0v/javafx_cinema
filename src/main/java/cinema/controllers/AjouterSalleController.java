@@ -22,95 +22,81 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.util.StringConverter;
 
+/**
+ * Contrôleur pour la page d'ajout de salle (page_ajout_salle.fxml).
+ */
 public class AjouterSalleController extends MenuController implements Initializable {
 
-    @FXML
-    private TextField tfNumero; // champ de saisie pour le numéro de la salle
+    @FXML private TextField tfNumero;      // Numéro de salle (ex: 102)
+    @FXML private TextField tfDescription; // Caractéristiques (ex: 4DX, Atmos)
+    @FXML private TextField tfNbPlaces;    // Capacité de la salle
+    @FXML private ComboBox<Cinema> cbCinema; // Liste déroulante des cinémas
+    @FXML private Button bRetour;          // Bouton pour revenir à la liste
 
-    @FXML
-    private TextField tfDescription; // champ de saisie pour la description
-
-    @FXML
-    private TextField tfNbPlaces; // champ de saisie pour le nombre de places
-
-    @FXML
-    private ComboBox<Cinema> cbCinema; // liste déroulante contenant les objets Cinema (pas juste des String)
-
-    @FXML
-    private Button bRetour; // bouton pour revenir à la liste
-
+    /**
+     * Remplit la ComboBox avec les cinémas existants pour l'affectation.
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        chargerCinemas(); // appelé automatiquement par JavaFX à l'ouverture de la page
+        CinemaDAO cinemaDAO = new CinemaDAO();
+        cbCinema.setItems(FXCollections.observableArrayList(cinemaDAO.findAll()));
     }
 
-    private void chargerCinemas() {
-        CinemaDAO cinemaDAO = new CinemaDAO(); // instancie le DAO pour accéder aux cinémas
-        cbCinema.setItems(FXCollections.observableArrayList(cinemaDAO.findAll())); // charge tous les cinémas dans la combobox
-        cbCinema.setConverter(new StringConverter<Cinema>() {
-            @Override
-            public String toString(Cinema cinema) {
-                return cinema == null ? "" : cinema.getDenomination(); // affiche le nom au lieu de l'objet brut
-            }
-            @Override
-            public Cinema fromString(String string) {
-                return null; // non utilisé car la combobox n'est pas éditable
-            }
-        });
-    }
-
+    /**
+     * Traite l'enregistrement. Inclut une gestion d'exception pour les erreurs de format (nombres).
+     */
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
-        String numeroStr = tfNumero.getText(); // récupère le texte saisi dans le champ numéro
-        String description = tfDescription.getText(); // récupère le texte saisi dans le champ description
-        String nbPlacesStr = tfNbPlaces.getText(); // récupère le texte saisi dans le champ nb places
+        try {
+            // Conversion des chaînes en entiers (peut générer une NumberFormatException)
+            int numero = Integer.parseInt(tfNumero.getText().trim());
+            String desc = tfDescription.getText().trim();
+            int places = Integer.parseInt(tfNbPlaces.getText().trim());
+            Cinema cinema = cbCinema.getValue(); // Récupère le cinéma choisi
 
-        if (numeroStr.trim().isEmpty() || nbPlacesStr.trim().isEmpty() || cbCinema.getValue() == null) {
-            // trim() supprime les espaces, isEmpty() vérifie si vide
-            Alert alert = new Alert(AlertType.ERROR); // crée une boîte de dialogue d'erreur
-            alert.setTitle("Erreur de validation"); // titre de la fenêtre d'alerte
-            alert.setHeaderText(null); // supprime le texte d'en-tête pour un rendu plus simple
-            alert.setContentText("Numéro, nombre de places et cinéma sont obligatoires."); // message affiché à l'utilisateur
-            alert.showAndWait(); // affiche l'alerte et attend que l'utilisateur ferme
-            return; // stoppe la méthode, on n'insère rien
-        }
+            if (cinema != null) {
+                // Création de l'objet Salle rattaché à l'ID du cinéma
+                Salle salle = new Salle(0, numero, desc, places, cinema.getIdCinema());
+                SalleDAO salleDAO = new SalleDAO();
 
-        int numero = Integer.parseInt(numeroStr); // convertit la String en int (plante si l'utilisateur a tapé une lettre)
-        int nbPlaces = Integer.parseInt(nbPlacesStr); // idem pour le nombre de places
-        int idCinema = cbCinema.getValue().getIdCinema(); // récupère l'id du cinéma sélectionné dans la combobox
-
-        Salle salle = new Salle(0, numero, description, nbPlaces, idCinema); // id=0 car auto-incrémenté par la base
-        SalleDAO salleDAO = new SalleDAO(); // instancie le DAO pour accéder aux salles
-        boolean controle = salleDAO.create(salle); // envoie l'objet au DAO qui fait l'INSERT en base
-
-        if (controle) { // si l'insertion a réussi
-            tfNumero.clear(); // vide le champ numéro
-            tfDescription.clear(); // vide le champ description
-            tfNbPlaces.clear(); // vide le champ nb places
-            cbCinema.setValue(null); // réinitialise la combobox
+                if (salleDAO.create(salle)) {
+                    // Nettoyage des champs si l'insertion est confirmée
+                    tfNumero.clear();
+                    tfDescription.clear();
+                    tfNbPlaces.clear();
+                    cbCinema.setValue(null);
+                }
+            }
+        } catch (NumberFormatException e) {
+            // Affiche une alerte graphique si l'utilisateur a tapé des lettres au lieu de chiffres
+            Alert alert = new Alert(AlertType.ERROR, "Le numéro et les places doivent être des nombres !");
+            alert.show();
         }
     }
 
+    /**
+     * Ferme la fenêtre actuelle et recharge la liste des salles.
+     */
     @FXML
     public void bRetourClick(ActionEvent event) {
-        Stage stageP = (Stage) bRetour.getScene().getWindow(); // remonte du bouton → scène → fenêtre
-        stageP.close(); // ferme la fenêtre actuelle
+        Stage stageP = (Stage) bRetour.getScene().getWindow();
+        stageP.close(); // Fermeture de la popup d'ajout
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_liste_salle.fxml")); // chemin vers le FXML de la liste
-            Parent root = fxmlLoader.load(); // charge le fichier FXML et crée les composants graphiques
-            ListeSalleController listeSalleController = fxmlLoader.getController(); // récupère l'instance du contrôleur créée par JavaFX
-            listeSalleController.setName(nameUti); // propage le nom de l'utilisateur connecté
-            Stage stage = new Stage(); // crée une nouvelle fenêtre
-            stage.setTitle("Liste des salles"); // définit le titre de la fenêtre
-            stage.setScene(new Scene(root)); // associe le contenu FXML à la fenêtre
-            stage.initModality(Modality.APPLICATION_MODAL); // bloque les autres fenêtres tant que celle-ci est ouverte
-            stage.show(); // affiche la fenêtre
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/cinema/views/page_liste_salle.fxml"));
+            Parent root = fxmlLoader.load();
+
+            // Propagation du nom d'utilisateur pour ne pas perdre la session
+            ListeSalleController listeSalleController = fxmlLoader.getController();
+            listeSalleController.setName(nameUti);
+
+            Stage stage = new Stage();
+            stage.setTitle("Liste des salles");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // affiche la stack trace si le chargement du FXML échoue
+            e.printStackTrace();
         }
     }
-
 }

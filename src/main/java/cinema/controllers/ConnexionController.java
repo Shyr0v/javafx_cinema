@@ -1,12 +1,11 @@
 package cinema.controllers;
 
 import java.net.URL;
-import java.sql.PreparedStatement;
 import java.util.ResourceBundle;
 
 import cinema.BO.Utilisateur;
-import cinema.DAO.DBManager;
 import cinema.DAO.UtilisateurDAO;
+import cinema.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -47,22 +46,10 @@ public class ConnexionController implements Initializable {
         tfMDP.clear();
 
         if (user != null) {
-            enregistrerUtilisateurPourLogs(user);
+            Session.setUtilisateur(user);
             showAccueil(user);
         } else {
             showError();
-        }
-    }
-
-    private void enregistrerUtilisateurPourLogs(Utilisateur user) {
-        try {
-            PreparedStatement ps = DBManager.getInstance().prepareStatement(
-                    "SELECT set_current_user_id(?)"
-            );
-            ps.setInt(1, user.getIdUtilisateur());
-            ps.execute();
-        } catch (Exception e) {
-            e.printStackTrace();
         }
     }
 
