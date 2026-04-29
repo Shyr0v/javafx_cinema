@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/7ecbd468-d94a-4987-8e13-639c2a9b1db1.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/7ecbd468-d94a-4987-8e13-639c2a9b1db1.xml" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Simplification des logs">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/log.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/log.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/SalleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/SalleDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -150,7 +145,7 @@
       <workItem from="1776760238301" duration="2794000" />
       <workItem from="1776944048461" duration="41000" />
       <workItem from="1777288625918" duration="3594000" />
-      <workItem from="1777367140024" duration="13978000" />
+      <workItem from="1777367140024" duration="15008000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -272,7 +267,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777387086963</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Simplification des logs">
+      <option name="closed" value="true" />
+      <created>1777450446188</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1777450446188</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,7 +305,8 @@
     <MESSAGE value="Navigation fluide et autres" />
     <MESSAGE value="Ajout de la fonctionnalité de log" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Simplification des logs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Simplification des logs" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
