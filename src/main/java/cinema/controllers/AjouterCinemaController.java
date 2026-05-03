@@ -21,18 +21,20 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 /**
- * Contrôleur gérant le formulaire d'ajout d'un cinéma (page_ajout_cinema.fxml).
+ * Contrôleur du formulaire d'ajout d'un cinéma (page_ajout_cinema.fxml).
+ * Hérite de MenuController pour la barre de navigation.
+ * Permet de saisir la dénomination, l'adresse, la ville et de choisir une franchise.
  */
 public class AjouterCinemaController extends MenuController implements Initializable {
 
-    // Liens vers les champs de saisie du fichier FXML
-    @FXML private TextField tfDenomination; // Nom commercial du cinéma
-    @FXML private TextField tfAdresse;      // Rue et numéro
-    @FXML private TextField tfVille;        // Ville de localisation
-    @FXML private ListView<Franchise> lvFranchise; // Liste de sélection des franchises
+    @FXML private TextField tfDenomination; // nom commercial du cinéma
+    @FXML private TextField tfAdresse;      // rue et numéro
+    @FXML private TextField tfVille;        // ville de localisation
+    @FXML private ListView<Franchise> lvFranchise; // liste de sélection des franchises
 
     /**
-     * Au chargement, on remplit la liste des franchises pour que l'utilisateur puisse choisir.
+     * Initialisation appelée automatiquement par JavaFX après le chargement du FXML.
+     * Charge la liste des franchises pour que l'utilisateur puisse en sélectionner une.
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,8 +42,8 @@ public class AjouterCinemaController extends MenuController implements Initializ
     }
 
     /**
-     * Appelle le DAO pour récupérer toutes les franchises en base.
-     * @return Une ObservableList, format requis par JavaFX pour mettre à jour la vue en temps réel.
+     * Charge toutes les franchises depuis la base pour alimenter la ListView.
+     * @return ObservableList des franchises disponibles
      */
     private ObservableList<Franchise> getFranchiseList() {
         FranchiseDAO franchiseDAO = new FranchiseDAO();
@@ -50,36 +52,34 @@ public class AjouterCinemaController extends MenuController implements Initializ
     }
 
     /**
-     * Méthode déclenchée par le bouton "Enregistrer".
-     * Elle crée l'objet BO et demande au DAO de l'insérer en BDD.
+     * Déclenché par le bouton "Enregistrer".
+     * Valide les saisies, crée l'objet Cinema et l'insère en base via le DAO.
+     * Si un champ est vide ou aucune franchise n'est sélectionnée, rien n'est envoyé en base.
      */
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
-        // Récupération et nettoyage des saisies (trim() retire les espaces inutiles)
-        String denom = tfDenomination.getText().trim();
+        String denom = tfDenomination.getText().trim(); // trim() supprime les espaces accidentels
         String adresse = tfAdresse.getText().trim();
         String ville = tfVille.getText().trim();
-        // Récupère l'objet Franchise sélectionné dans la liste
         Franchise franchise = lvFranchise.getSelectionModel().getSelectedItem();
 
-        // Vérification de sécurité : on n'envoie rien en BDD si un champ est vide
+        // Vérification que tous les champs obligatoires sont remplis
         if (denom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || franchise == null) {
-            return; // On pourrait ajouter une popup d'erreur ici
+            return; // on pourrait afficher une popup d'erreur ici
         }
 
-        // Création de l'objet Cinéma (l'ID est à 0 car géré par l'auto-incrément SQL)
+        // L'id est à 0 car géré par l'auto-incrément SQL
         Cinema cinema = new Cinema(0, denom, adresse, ville, franchise.getIdFranchise());
 
-        // Interaction avec la base de données
         CinemaDAO cinemaDAO = new CinemaDAO();
         cinemaDAO.create(cinema);
 
-        // Nettoyage de l'interface après l'ajout réussi
+        // Vide le formulaire après l'ajout pour permettre un nouvel ajout
         bEffacerClick(null);
     }
 
     /**
-     * Réinitialise tous les champs du formulaire.
+     * Vide tous les champs du formulaire sans enregistrer.
      */
     @FXML
     public void bEffacerClick(ActionEvent event) {
@@ -90,7 +90,7 @@ public class AjouterCinemaController extends MenuController implements Initializ
     }
 
     /**
-     * Retourne à la liste des cinémas en rechargeant la scène correspondante.
+     * Retourne à la liste des cinémas en réutilisant le stage existant.
      */
     @FXML
     public void bRetourClick(ActionEvent event) {
@@ -98,18 +98,16 @@ public class AjouterCinemaController extends MenuController implements Initializ
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
             Parent root = loader.load();
 
-            // Transmission du nom de l'utilisateur au nouveau contrôleur pour garder la session
             ListeCinemaController controller = loader.getController();
-            controller.setName(nameUti);
+            controller.setName(nameUti); // transmet le nom pour maintenir la session
 
-            // Changement de fenêtre
             Stage stage = (Stage) tfDenomination.getScene().getWindow();
             stage.setScene(new Scene(root));
             stage.setTitle("Liste cinémas");
             stage.setResizable(false);
             stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // Affiche l'erreur en console si le fichier FXML est introuvable
+            e.printStackTrace();
         }
     }
 }
