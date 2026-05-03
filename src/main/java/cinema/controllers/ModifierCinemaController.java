@@ -8,10 +8,6 @@ import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
 import javafx.collections.FXCollections;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
-import javafx.util.StringConverter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +15,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Modality;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.StringConverter;
 
 public class ModifierCinemaController extends MenuController implements Initializable {
 
@@ -87,22 +86,18 @@ public class ModifierCinemaController extends MenuController implements Initiali
 
     @FXML
     private void bRetourClick(ActionEvent event) {
-
-        Stage stageP = (Stage) bRetour.getScene().getWindow();
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            ListeCinemaController controller = fxmlLoader.getController();
+            ListeCinemaController controller = loader.getController();
             controller.setName(nameUti);
 
-            Stage stage = new Stage();
-            stage.setTitle("Liste cinémas");
+            Stage stage = (Stage) bRetour.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Liste cinémas");
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
@@ -112,18 +107,15 @@ public class ModifierCinemaController extends MenuController implements Initiali
 
     @FXML
     private void bEnregistrerClick(ActionEvent event) {
+        String lib = taLibSec.getText().trim();
+        String adresse = tfAdresse.getText().trim();
+        String ville = tfVille.getText().trim();
 
-        String lib = taLibSec.getText();
-        String adresse = tfAdresse.getText();
-        String ville = tfVille.getText();
-
-        if (!lib.trim().isEmpty()) {
-
+        if (!lib.isEmpty()) {
             CinemaDAO cinemaDAO = new CinemaDAO();
             Cinema cinemaExistant = cinemaDAO.find(idSec);
 
             int idFranchise = 0;
-
             if (cbFranchise.getValue() != null) {
                 idFranchise = cbFranchise.getValue().getIdFranchise();
             } else if (cinemaExistant != null) {
@@ -131,26 +123,21 @@ public class ModifierCinemaController extends MenuController implements Initiali
             }
 
             Cinema cinema = new Cinema(idSec, lib, adresse, ville, idFranchise);
-
             boolean ok = cinemaDAO.update(cinema);
 
             if (ok) {
-
-                Stage stageP = (Stage) bRetour.getScene().getWindow();
-                stageP.close();
-
                 try {
-                    FXMLLoader fxmlLoader = new FXMLLoader(
+                    FXMLLoader loader = new FXMLLoader(
                             getClass().getResource("/cinema/views/page_liste_cinema.fxml"));
-                    Parent root = fxmlLoader.load();
+                    Parent root = loader.load();
 
-                    ListeCinemaController controller = fxmlLoader.getController();
+                    ListeCinemaController controller = loader.getController();
                     controller.setName(nameUti);
 
-                    Stage stage = new Stage();
-                    stage.setTitle("Liste cinémas");
+                    Stage stage = (Stage) bRetour.getScene().getWindow();
                     stage.setScene(new Scene(root));
-                    stage.initModality(Modality.APPLICATION_MODAL);
+                    stage.setTitle("Liste cinémas");
+                    stage.setResizable(false);
                     stage.show();
 
                 } catch (Exception e) {

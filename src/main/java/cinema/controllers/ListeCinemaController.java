@@ -22,7 +22,6 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ListeCinemaController extends MenuController implements Initializable {
@@ -69,22 +68,19 @@ public class ListeCinemaController extends MenuController implements Initializab
 
     @FXML
     public void bRetourClick(ActionEvent actionEvent) {
-        Stage stageP = (Stage) bRetour.getScene().getWindow();
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            AccueilController accueilController = fxmlLoader.getController();
-            accueilController.setName(nameUti);
-            accueilController.setBienvenue();
+            AccueilController controller = loader.getController();
+            controller.setName(nameUti);
+            controller.setBienvenue();
 
-            Stage stage = new Stage();
-            stage.setTitle("Accueil");
+            Stage stage = (Stage) bRetour.getScene().getWindow();
             stage.setScene(new Scene(root));
-            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Accueil");
+            stage.setResizable(false);
             stage.show();
 
         } catch (Exception e) {
@@ -99,23 +95,21 @@ public class ListeCinemaController extends MenuController implements Initializab
             {
                 btn.setOnAction(event -> {
                     Cinema cinema = getTableView().getItems().get(getIndex());
-                    Stage stageP = (Stage) bRetour.getScene().getWindow();
-                    stageP.close();
 
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(
+                        FXMLLoader loader = new FXMLLoader(
                                 getClass().getResource("/cinema/views/page_modif_cinema.fxml"));
-                        Parent root = fxmlLoader.load();
+                        Parent root = loader.load();
 
-                        ModifierCinemaController modifierCinemaController = fxmlLoader.getController();
-                        modifierCinemaController.setName(nameUti);
-                        modifierCinemaController.setIdSec(cinema.getIdCinema());
-                        modifierCinemaController.setAttrinuts();
+                        ModifierCinemaController controller = loader.getController();
+                        controller.setName(nameUti);
+                        controller.setIdSec(cinema.getIdCinema());
+                        controller.setAttrinuts();
 
-                        Stage stage = new Stage();
-                        stage.setTitle("Modifier un cinéma");
+                        Stage stage = (Stage) bRetour.getScene().getWindow();
                         stage.setScene(new Scene(root));
-                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.setTitle("Modifier un cinéma");
+                        stage.setResizable(false);
                         stage.show();
 
                     } catch (Exception e) {

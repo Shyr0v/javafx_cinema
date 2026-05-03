@@ -5,6 +5,7 @@ import java.util.ResourceBundle;
 
 import cinema.BO.Utilisateur;
 import cinema.DAO.UtilisateurDAO;
+import cinema.Session;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -45,6 +45,7 @@ public class ConnexionController implements Initializable {
         tfMDP.clear();
 
         if (user != null) {
+            Session.setUtilisateur(user);
             showAccueil(user);
         } else {
             showError();
@@ -57,12 +58,15 @@ public class ConnexionController implements Initializable {
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
             Parent root = loader.load();
 
-            AccueilController accueilController = loader.getController();
-            accueilController.setUtilisateur(user);
-            accueilController.setBienvenue();
+            AccueilController controller = loader.getController();
+            controller.setUtilisateur(user);
+            controller.setBienvenue();
 
             Stage stage = (Stage) bConnexion.getScene().getWindow();
             stage.setScene(new Scene(root));
+            stage.setTitle("Accueil Gestion de franchises");
+            stage.setResizable(false);
+            Navigation.applyLogo(stage); // utilise Navigation au lieu d'une méthode locale dupliquée
             stage.show();
 
         } catch (Exception e) {
@@ -73,15 +77,16 @@ public class ConnexionController implements Initializable {
     @FXML
     private void showError() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/ErreurConnexion.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
             Stage stage = new Stage();
             stage.setTitle("Erreur de connexion");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
+            Navigation.applyLogo(stage); // logo sur la popup d'erreur aussi
             stage.showAndWait();
 
         } catch (Exception e) {

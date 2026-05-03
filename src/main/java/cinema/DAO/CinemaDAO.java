@@ -3,6 +3,7 @@ package cinema.DAO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,31 +14,56 @@ public class CinemaDAO extends DAO<Cinema> {
     @Override
     public boolean create(Cinema obj) {
         boolean result = false;
+
         try {
-            String query = "INSERT INTO cinema (denomination, adresse, ville, id_franchise) VALUES (?,?,?,?);";
-            PreparedStatement preparedStatement = this.connect.prepareStatement(query);
-            preparedStatement.setString(1, obj.getDenomination());
-            preparedStatement.setString(2, obj.getAdresse());
-            preparedStatement.setString(3, obj.getVille());
-            preparedStatement.setInt(4, obj.getIdFranchise());
-            int rows = preparedStatement.executeUpdate();
-            if (rows > 0) {
-                result = true;
+            String sql = "INSERT INTO cinema(denomination, adresse, ville, id_franchise) VALUES (?, ?, ?, ?)";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+
+            ps.setString(1, obj.getDenomination());
+            ps.setString(2, obj.getAdresse());
+            ps.setString(3, obj.getVille());
+            ps.setInt(4, obj.getIdFranchise());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result) {
+                LogDAO.log(
+                        "cinema",
+                        "INSERT",
+                        "",
+                        formatCinema(obj)
+                );
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
     @Override
     public boolean delete(Cinema obj) {
         boolean result = false;
-        String query = "DELETE FROM cinema WHERE id_cinema = ?;";
 
-        try (PreparedStatement preparedStatement = this.connect.prepareStatement(query)) {
-            preparedStatement.setInt(1, obj.getIdCinema());
-            result = preparedStatement.executeUpdate() > 0;
+        try {
+            Cinema ancienCinema = find(obj.getIdCinema());
+
+            String sql = "DELETE FROM cinema WHERE id_cinema = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, obj.getIdCinema());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result && ancienCinema != null) {
+                LogDAO.log(
+                        "cinema",
+                        "DELETE",
+                        formatCinema(ancienCinema),
+                        ""
+                );
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -48,63 +74,72 @@ public class CinemaDAO extends DAO<Cinema> {
     @Override
     public boolean update(Cinema obj) {
         boolean result = false;
-        String query = "UPDATE cinema SET denomination = ?, adresse = ?, ville = ?, id_franchise = ? WHERE id_cinema = ?;";
+
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement(query);
-            preparedStatement.setString(1, obj.getDenomination());
-            preparedStatement.setString(2, obj.getAdresse());
-            preparedStatement.setString(3, obj.getVille());
-            preparedStatement.setInt(4, obj.getIdFranchise());
-            preparedStatement.setInt(5, obj.getIdCinema());
-            int rows = preparedStatement.executeUpdate();
-            if (rows > 0) {
-                result = true;
+            Cinema ancienCinema = find(obj.getIdCinema());
+
+            String sql = "UPDATE cinema SET denomination = ?, adresse = ?, ville = ?, id_franchise = ? WHERE id_cinema = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+
+            ps.setString(1, obj.getDenomination());
+            ps.setString(2, obj.getAdresse());
+            ps.setString(3, obj.getVille());
+            ps.setInt(4, obj.getIdFranchise());
+            ps.setInt(5, obj.getIdCinema());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result && ancienCinema != null) {
+                LogDAO.log(
+                        "cinema",
+                        "UPDATE",
+                        formatCinema(ancienCinema),
+                        formatCinema(obj)
+                );
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
     @Override
-    public Cinema find(int id) {
+    public Cinema find(int idCinema) {
         Cinema cinema = null;
-        String query = "SELECT * FROM cinema WHERE id_cinema = ?;";
+
         try {
-            PreparedStatement preparedStatement = this.connect.prepareStatement(query);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                cinema = new Cinema(
-                        resultSet.getInt("id_cinema"),
-                        resultSet.getString("denomination"),
-                        resultSet.getString("adresse"),
-                        resultSet.getString("ville"),
-                        resultSet.getInt("id_franchise"));
+            String sql = "SELECT * FROM cinema WHERE id_cinema = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, idCinema);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                cinema = hydrate(rs);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return cinema;
     }
 
     @Override
     public List<Cinema> findAll() {
-        List<Cinema> cinemas = new ArrayList<Cinema>();
-        String query = "SELECT * FROM cinema;";
+        List<Cinema> cinemas = new ArrayList<>();
 
-        try (PreparedStatement preparedStatement = this.connect.prepareStatement(query);
-                ResultSet resultSet = preparedStatement.executeQuery()) {
+        try {
+            String sql = "SELECT * FROM cinema";
+            Statement statement = this.connect.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
 
-            while (resultSet.next()) {
-                Cinema cinema = new Cinema(
-                        resultSet.getInt("id_cinema"),
-                        resultSet.getString("denomination"),
-                        resultSet.getString("adresse"),
-                        resultSet.getString("ville"),
-                        resultSet.getInt("id_franchise"));
-                cinemas.add(cinema);
+            while (rs.next()) {
+                cinemas.add(hydrate(rs));
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -112,4 +147,21 @@ public class CinemaDAO extends DAO<Cinema> {
         return cinemas;
     }
 
+    private Cinema hydrate(ResultSet rs) throws SQLException {
+        return new Cinema(
+                rs.getInt("id_cinema"),
+                rs.getString("denomination"),
+                rs.getString("adresse"),
+                rs.getString("ville"),
+                rs.getInt("id_franchise")
+        );
+    }
+
+    private String formatCinema(Cinema cinema) {
+        return "ID=" + cinema.getIdCinema()
+                + ", Denomination=" + cinema.getDenomination()
+                + ", Adresse=" + cinema.getAdresse()
+                + ", Ville=" + cinema.getVille()
+                + ", IdFranchise=" + cinema.getIdFranchise();
+    }
 }

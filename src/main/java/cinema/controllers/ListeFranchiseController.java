@@ -6,11 +6,11 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
-import cinema.BO.Franchise;
 import cinema.BO.Cinema;
+import cinema.BO.Franchise;
 import cinema.BO.Utilisateur;
-import cinema.DAO.FranchiseDAO;
 import cinema.DAO.CinemaDAO;
+import cinema.DAO.FranchiseDAO;
 import cinema.DAO.UtilisateurDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
@@ -25,10 +25,10 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class ListeFranchiseController extends MenuController implements Initializable {
+
     @FXML
     private TableView<Franchise> tvFranchises;
 
@@ -54,12 +54,6 @@ public class ListeFranchiseController extends MenuController implements Initiali
     public void initialize(URL location, ResourceBundle resources) {
         UtilisateurDAO gerantDAO = new UtilisateurDAO();
 
-        // Programmation fonctionnelle
-        // Collecteur de flux :
-        // https://www.ionos.fr/digitalguide/sites-internet/developpement-web/les-collectors-de-streams-en-java/
-        // toMap :
-        // https://www.geeksforgeeks.org/java/collectors-tomap-method-in-java-with-examples/
-        //
         Map<Integer, Utilisateur> gerants = gerantDAO.findAll()
                 .stream()
                 .collect(Collectors.toMap(Utilisateur::getIdUtilisateur, u -> u));
@@ -69,82 +63,66 @@ public class ListeFranchiseController extends MenuController implements Initiali
             return new SimpleStringProperty(
                     gerant != null ? gerant.getNom() + " " + gerant.getPrenom() : "Aucun gérant");
         });
+
         tcNomFranchise.setCellValueFactory(new PropertyValueFactory<>("nomFranchise"));
         tcSiegeSocial.setCellValueFactory(new PropertyValueFactory<>("siegeSocial"));
-        ObservableList<Franchise> data = getFranchiseList();
-        tvFranchises.setItems(data);
+        tvFranchises.setItems(getFranchiseList());
 
         addButtonModifierToTable();
         addButtonSupprimerToTable();
     }
 
     private ObservableList<Franchise> getFranchiseList() {
-
-        FranchiseDAO var1 = new FranchiseDAO();
-        List<Franchise> var2 = var1.findAll();
-
-        ObservableList<Franchise> list = FXCollections.observableArrayList();
-        if (var2 != null) {
-            list.addAll(var2);
-        }
-        return list;
+        FranchiseDAO franchiseDAO = new FranchiseDAO();
+        List<Franchise> franchises = franchiseDAO.findAll();
+        return FXCollections.observableArrayList(franchises);
     }
 
     @FXML
     private void bRetourClick() {
-        Stage stageP = (Stage) bRetour.getScene().getWindow();
-        stageP.close();
-
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader(
+            FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
-            Parent root = fxmlLoader.load();
+            Parent root = loader.load();
 
-            AccueilController accueilController = fxmlLoader.getController();
-            accueilController.setName(nameUti);
-            accueilController.setBienvenue();
+            AccueilController controller = loader.getController();
+            controller.setName(nameUti);
+            controller.setBienvenue();
 
-            // Créer une nouvelle fenêtre (Stage)
-            Stage stage = new Stage();
-            stage.setTitle("Liste franchises");
+            Stage stage = (Stage) bRetour.getScene().getWindow();
             stage.setScene(new Scene(root));
-
-            // Configurer la fenêtre en tant que modal
-            stage.initModality(Modality.APPLICATION_MODAL);
-
-            // Afficher la fenêtre et attendre qu'elle se ferme
+            stage.setTitle("Accueil");
+            stage.setResizable(false);
             stage.show();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     private void addButtonModifierToTable() {
         tcModifier.setCellFactory(column -> new TableCell<>() {
             private final Button btn = new Button("Modifier");
+
             {
                 btn.setOnAction(event -> {
                     Franchise franchise = getTableView().getItems().get(getIndex());
-                    Stage stageP = (Stage) bRetour.getScene().getWindow();
-                    stageP.close();
 
                     try {
-                        FXMLLoader fxmlLoader = new FXMLLoader(
+                        FXMLLoader loader = new FXMLLoader(
                                 getClass().getResource("/cinema/views/page_modif_franchise.fxml"));
-                        Parent root = fxmlLoader.load();
+                        Parent root = loader.load();
 
-                        ModifierFranchiseController modifierFranchiseCtrl = fxmlLoader.getController();
-                        modifierFranchiseCtrl.setAttributes(franchise);
-                        modifierFranchiseCtrl.setName(nameUti);
+                        ModifierFranchiseController controller = loader.getController();
+                        controller.setAttributes(franchise);
+                        controller.setName(nameUti);
 
-                        Stage stage = new Stage();
-                        stage.setTitle("Modification franchise");
+                        Stage stage = (Stage) bRetour.getScene().getWindow();
                         stage.setScene(new Scene(root));
-
-                        stage.initModality(Modality.APPLICATION_MODAL);
-
+                        stage.setTitle("Modification franchise");
+                        stage.setResizable(false);
                         stage.show();
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
@@ -166,11 +144,26 @@ public class ListeFranchiseController extends MenuController implements Initiali
             {
                 btn.setOnAction(event -> {
                     Franchise franchise = getTableView().getItems().get(getIndex());
-                    tvFranchises.getItems().remove(franchise);
-                    FranchiseDAO franchiseDAO = new FranchiseDAO();
-                    franchiseDAO.delete(franchise);
+
+                    CinemaDAO cinemaDAO = new CinemaDAO();
+                    List<Cinema> cinemas = cinemaDAO.findAll();
+
+                    boolean utilisee = false;
+                    for (Cinema cinema : cinemas) {
+                        if (cinema.getIdFranchise() == franchise.getIdFranchise()) {
+                            utilisee = true;
+                            break;
+                        }
+                    }
+
+                    if (!utilisee) {
+                        FranchiseDAO franchiseDAO = new FranchiseDAO();
+                        boolean deleted = franchiseDAO.delete(franchise);
+                        if (deleted) {
+                            tvFranchises.getItems().remove(franchise);
+                        }
+                    }
                 });
-                // btn.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white;");
             }
 
             @Override
@@ -180,5 +173,4 @@ public class ListeFranchiseController extends MenuController implements Initiali
             }
         });
     }
-
 }

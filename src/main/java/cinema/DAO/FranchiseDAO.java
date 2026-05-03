@@ -13,142 +13,172 @@ public class FranchiseDAO extends DAO<Franchise> {
 
     @Override
     public boolean create(Franchise obj) {
-        boolean controle = false;
+        boolean result = false;
+
         try {
-            String sql = "INSERT INTO franchise(nom_franchise, siege_social, id_gerant) VALUES (?,?,?)";
-            PreparedStatement statement = this.connect.prepareStatement(sql);
-
-            statement.setString(1, obj.getNomFranchise());
-            statement.setString(2, obj.getSiegeSocial());
-            statement.setInt(3, obj.getIdGerant());
-
-            int rowsInserted = statement.executeUpdate();
-            if (rowsInserted > 0) {
-                controle = true;
-            }
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return controle;
-    }
-
-    public Integer getNbFranchiseByIdGerant(int idGerant) {
-        int result = 0;
-        try {
-            String sql = "SELECT COUNT(*) FROM franchise WHERE id_gerant = ?";
+            String sql = "INSERT INTO franchise(nom_franchise, siege_social, id_gerant) VALUES (?, ?, ?)";
             PreparedStatement ps = this.connect.prepareStatement(sql);
-            ps.setInt(1, idGerant);
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                result = rs.getInt(1);
+
+            ps.setString(1, obj.getNomFranchise());
+            ps.setString(2, obj.getSiegeSocial());
+            ps.setInt(3, obj.getIdGerant());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result) {
+                LogDAO.log(
+                        "franchise",
+                        "INSERT",
+                        "",
+                        formatFranchise(obj)
+                );
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return result;
     }
 
     @Override
     public boolean delete(Franchise obj) {
-        boolean controle = false;
-        try {
-            String sql = "DELETE FROM franchise WHERE id_franchise = ?;";
-            PreparedStatement statement = this.connect.prepareStatement(sql);
-            statement.setInt(1, obj.getIdFranchise());
+        boolean result = false;
 
-            int rowsDeleted = statement.executeUpdate();
-            if (rowsDeleted > 0) {
-                controle = true;
+        try {
+            Franchise ancienneFranchise = find(obj.getIdFranchise());
+
+            String sql = "DELETE FROM franchise WHERE id_franchise = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, obj.getIdFranchise());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result && ancienneFranchise != null) {
+                LogDAO.log(
+                        "franchise",
+                        "DELETE",
+                        formatFranchise(ancienneFranchise),
+                        ""
+                );
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return controle;
+
+        return result;
     }
 
     @Override
     public boolean update(Franchise obj) {
-        boolean controle = false;
-        try {
-            String query = "UPDATE franchise SET nom_franchise = ?, siege_social = ?, id_gerant = ? WHERE id_franchise = ?";
-            PreparedStatement statement = this.connect.prepareStatement(query);
-            statement.setString(1, obj.getNomFranchise());
-            statement.setString(2, obj.getSiegeSocial());
-            statement.setInt(3, obj.getIdGerant());
-            statement.setInt(4, obj.getIdFranchise());
+        boolean result = false;
 
-            int rowsUpdated = statement.executeUpdate();
-            if (rowsUpdated > 0) {
-                controle = true;
+        try {
+            Franchise ancienneFranchise = find(obj.getIdFranchise());
+
+            String sql = "UPDATE franchise SET nom_franchise = ?, siege_social = ?, id_gerant = ? WHERE id_franchise = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+
+            ps.setString(1, obj.getNomFranchise());
+            ps.setString(2, obj.getSiegeSocial());
+            ps.setInt(3, obj.getIdGerant());
+            ps.setInt(4, obj.getIdFranchise());
+
+            result = ps.executeUpdate() > 0;
+
+            if (result && ancienneFranchise != null) {
+                LogDAO.log(
+                        "franchise",
+                        "UPDATE",
+                        formatFranchise(ancienneFranchise),
+                        formatFranchise(obj)
+                );
             }
 
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return controle;
+
+        return result;
     }
 
     @Override
-    public Franchise find(int id) {
+    public Franchise find(int idFranchise) {
         Franchise franchise = null;
-        String query = "SELECT * FROM franchise WHERE id_franchise = ?;";
+
         try {
-            PreparedStatement ps = this.connect.prepareStatement(query);
-            ps.setInt(1, id);
-            ResultSet resultSet = ps.executeQuery();
-            if (resultSet.next()) {
-                franchise = hydrate(resultSet);
+            String sql = "SELECT * FROM franchise WHERE id_franchise = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, idFranchise);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                franchise = hydrate(rs);
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return franchise;
     }
 
     @Override
     public List<Franchise> findAll() {
-        List<Franchise> mesFranchises = new ArrayList<>();
-        Franchise franchise;
+        List<Franchise> franchises = new ArrayList<>();
 
         try {
-            String b = "SELECT * FROM franchise ORDER BY id_franchise";
-            Statement ps = this.connect.createStatement();
-            ResultSet rs = ps.executeQuery(b);
+            String sql = "SELECT * FROM franchise";
+            Statement statement = this.connect.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+
             while (rs.next()) {
-                franchise = hydrate(rs);
-                mesFranchises.add(franchise);
+                franchises.add(hydrate(rs));
             }
 
         } catch (SQLException e) {
-            return null;
+            e.printStackTrace();
         }
-        return mesFranchises;
+
+        return franchises;
     }
 
     public List<Franchise> getAllByGerant(int idGerant) {
-        List<Franchise> mesFranchises = new ArrayList<>();
-        Franchise franchise;
+        List<Franchise> franchises = new ArrayList<>();
+
         try {
             String sql = "SELECT * FROM franchise WHERE id_gerant = ?";
             PreparedStatement ps = this.connect.prepareStatement(sql);
             ps.setInt(1, idGerant);
+
             ResultSet rs = ps.executeQuery();
+
             while (rs.next()) {
-                franchise = hydrate(rs);
-                mesFranchises.add(franchise);
+                franchises.add(hydrate(rs));
             }
+
         } catch (SQLException e) {
-            return null;
+            e.printStackTrace();
         }
-        return mesFranchises;
+
+        return franchises;
     }
 
-    private Franchise hydrate(ResultSet resultSet) throws SQLException {
-        return new Franchise(resultSet.getInt("id_franchise"),
-                resultSet.getString("nom_franchise"),
-                resultSet.getString("siege_social"),
-                resultSet.getInt("id_gerant"));
+    private Franchise hydrate(ResultSet rs) throws SQLException {
+        return new Franchise(
+                rs.getInt("id_franchise"),
+                rs.getString("nom_franchise"),
+                rs.getString("siege_social"),
+                rs.getInt("id_gerant")
+        );
+    }
+
+    private String formatFranchise(Franchise franchise) {
+        return "ID=" + franchise.getIdFranchise()
+                + ", Nom=" + franchise.getNomFranchise()
+                + ", Siege=" + franchise.getSiegeSocial()
+                + ", IdGerant=" + franchise.getIdGerant();
     }
 }
