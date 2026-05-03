@@ -22,7 +22,7 @@ public class MainApplication extends Application {
             primaryStage.setResizable(false);
             primaryStage.centerOnScreen();
             primaryStage.getIcons().clear();
-            primaryStage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
+            primaryStage.getIcons().add(new Image("/cinema/images/cinema_logo.png"));
             primaryStage.setScene(scene);
 
             primaryStage.show();

@@ -14,7 +14,7 @@ public class Navigation {
 
     private static final Image LOGO =
             new Image(Objects.requireNonNull(Navigation.class.getResourceAsStream(
-                    "/cinema/images/cinema_32x32.png")));
+                    "/cinema/images/cinema_logo.png")));
 
     public static void applyLogo(Stage stage) {
         stage.getIcons().clear();

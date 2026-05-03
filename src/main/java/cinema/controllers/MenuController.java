@@ -7,7 +7,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class MenuController {
@@ -23,15 +22,14 @@ public class MenuController {
     }
 
     protected void appliquerLogo(Stage stage) {
-        stage.getIcons().clear();
-        stage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
+        Navigation.applyLogo(stage); // délègue à la classe Navigation (plus de duplication)
     }
 
     protected void changerScene(Stage stage, Parent root, String titre) {
         stage.setScene(new Scene(root));
         stage.setTitle(titre);
         stage.setResizable(false);
-        appliquerLogo(stage);
+        appliquerLogo(stage); // logo appliqué à chaque changement de scène
         stage.show();
     }
 
@@ -149,6 +147,9 @@ public class MenuController {
                     getClass().getResource("/cinema/views/page_liste_salle.fxml"));
             Parent root = loader.load();
 
+            ListeSalleController controller = loader.getController();
+            controller.setName(nameUti);
+
             changerScene(stage, root, "Liste salles");
 
         } catch (Exception e) {
@@ -164,6 +165,9 @@ public class MenuController {
             FXMLLoader loader = new FXMLLoader(
                     getClass().getResource("/cinema/views/page_ajout_salle.fxml"));
             Parent root = loader.load();
+
+            AjouterSalleController controller = loader.getController();
+            controller.setName(nameUti);
 
             changerScene(stage, root, "Ajouter une salle");
 

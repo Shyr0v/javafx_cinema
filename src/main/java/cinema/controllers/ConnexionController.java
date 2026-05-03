@@ -15,7 +15,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
@@ -53,11 +52,6 @@ public class ConnexionController implements Initializable {
         }
     }
 
-    private void appliquerLogo(Stage stage) {
-        stage.getIcons().clear();
-        stage.getIcons().add(new Image("/cinema/images/cinema_32x32.png"));
-    }
-
     private void showAccueil(Utilisateur user) {
         try {
             FXMLLoader loader = new FXMLLoader(
@@ -72,7 +66,7 @@ public class ConnexionController implements Initializable {
             stage.setScene(new Scene(root));
             stage.setTitle("Accueil Gestion de franchises");
             stage.setResizable(false);
-            appliquerLogo(stage);
+            Navigation.applyLogo(stage); // utilise Navigation au lieu d'une méthode locale dupliquée
             stage.show();
 
         } catch (Exception e) {
@@ -92,7 +86,7 @@ public class ConnexionController implements Initializable {
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setResizable(false);
-            appliquerLogo(stage);
+            Navigation.applyLogo(stage); // logo sur la popup d'erreur aussi
             stage.showAndWait();
 
         } catch (Exception e) {

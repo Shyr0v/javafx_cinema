@@ -30,46 +30,46 @@ import javafx.stage.Stage;
 public class ListeSalleController extends MenuController implements Initializable {
 
     @FXML
-    private TableView<Salle> tvSalle; // tableau qui affiche les objets Salle
+    private TableView<Salle> tvSalle;
 
     @FXML
-    private TableColumn<Salle, Integer> tcNumero, tcNbPlaces; // colonnes affichant des entiers
+    private TableColumn<Salle, Integer> tcNumero, tcNbPlaces;
 
     @FXML
-    private TableColumn<Salle, String> tcDescription, tcCinema; // colonnes affichant des String
+    private TableColumn<Salle, String> tcDescription, tcCinema;
 
     @FXML
-    private TableColumn<Salle, Void> tcModif, tcSupp; // colonnes sans donnée, contiennent des boutons
+    private TableColumn<Salle, Void> tcModif, tcSupp;
 
     @FXML
     private Button bRetour;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        tcNumero.setCellValueFactory(new PropertyValueFactory<>("numero")); // JavaFX appelle getNumero() sur chaque Salle
-        tcDescription.setCellValueFactory(new PropertyValueFactory<>("description")); // JavaFX appelle getDescription()
-        tcNbPlaces.setCellValueFactory(new PropertyValueFactory<>("nbPlaces")); // JavaFX appelle getNbPlaces()
+        tcNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));
+        tcDescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+        tcNbPlaces.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));
         tcCinema.setCellValueFactory(cellData ->
-                new SimpleStringProperty(getNomCinema(cellData.getValue().getIdCinema()))); // lambda car nécessite un appel DAO supplémentaire
+                new SimpleStringProperty(getNomCinema(cellData.getValue().getIdCinema())));
 
-        btnModif(); // configure les boutons Modifier dans la colonne tcModif
-        btnSupp(); // configure les boutons Supprimer dans la colonne tcSupp
+        btnModif();
+        btnSupp();
 
-        tvSalle.setItems(getSalles()); // charge les données et les passe au tableau
+        tvSalle.setItems(getSalles());
     }
 
     private ObservableList<Salle> getSalles() {
         SalleDAO salleDAO = new SalleDAO();
-        List<Salle> mesSalles = salleDAO.findAll(); // récupère toutes les salles depuis la base
-        return FXCollections.observableArrayList(mesSalles); // convertit en ObservableList que JavaFX peut surveiller
+        List<Salle> mesSalles = salleDAO.findAll();
+        return FXCollections.observableArrayList(mesSalles);
     }
 
     private String getNomCinema(int idCinema) {
         CinemaDAO cinemaDAO = new CinemaDAO();
         if (cinemaDAO.find(idCinema) != null) {
-            return cinemaDAO.find(idCinema).getDenomination(); // retourne le nom lisible plutôt que l'id
+            return cinemaDAO.find(idCinema).getDenomination();
         }
-        return ""; // retourne vide si le cinéma n'existe plus en base
+        return "";
     }
 
     public void bRetourClick(ActionEvent actionEvent) {
@@ -80,12 +80,13 @@ public class ListeSalleController extends MenuController implements Initializabl
                     getClass().getResource("/cinema/views/page_accueil.fxml"));
             Parent root = fxmlLoader.load();
             AccueilController accueilController = fxmlLoader.getController();
-            accueilController.setName(nameUti); // propage le nom utilisateur vers l'accueil
-            accueilController.setBienvenue(); // met à jour le label de bienvenue
+            accueilController.setName(nameUti);
+            accueilController.setBienvenue();
             Stage stage = new Stage();
             stage.setTitle("Accueil");
             stage.setScene(new Scene(root));
             stage.initModality(Modality.APPLICATION_MODAL);
+            Navigation.applyLogo(stage); // logo appliqué sur le nouveau Stage
             stage.show();
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,10 +95,10 @@ public class ListeSalleController extends MenuController implements Initializabl
 
     private void btnModif() {
         tcModif.setCellFactory(column -> new TableCell<Salle, Void>() {
-            private final Button btn = new Button("Modifier"); // un bouton par cellule
+            private final Button btn = new Button("Modifier");
             {
                 btn.setOnAction(event -> {
-                    Salle salle = getTableView().getItems().get(getIndex()); // getIndex() = numéro de la ligne cliquée
+                    Salle salle = getTableView().getItems().get(getIndex());
                     Stage stageP = (Stage) bRetour.getScene().getWindow();
                     stageP.close();
                     try {
@@ -106,12 +107,13 @@ public class ListeSalleController extends MenuController implements Initializabl
                         Parent root = fxmlLoader.load();
                         ModifierSalleController modifierSalleController = fxmlLoader.getController();
                         modifierSalleController.setName(nameUti);
-                        modifierSalleController.setIdSalle(salle.getIdSalle()); // passe l'id avant setAttributs()
-                        modifierSalleController.setAttributs(); // déclenche le chargement des données dans les champs
+                        modifierSalleController.setIdSalle(salle.getIdSalle());
+                        modifierSalleController.setAttributs();
                         Stage stage = new Stage();
                         stage.setTitle("Modifier une salle");
                         stage.setScene(new Scene(root));
                         stage.initModality(Modality.APPLICATION_MODAL);
+                        Navigation.applyLogo(stage); // logo appliqué sur le nouveau Stage
                         stage.show();
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -120,8 +122,8 @@ public class ListeSalleController extends MenuController implements Initializabl
             }
             @Override
             protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty); // obligatoire, initialise la cellule correctement
-                setGraphic(empty ? null : btn); // n'affiche le bouton que si la ligne contient une salle
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
             }
         });
     }
@@ -131,11 +133,11 @@ public class ListeSalleController extends MenuController implements Initializabl
             private final Button btn = new Button("Supprimer");
             {
                 btn.setOnAction(event -> {
-                    Salle salle = getTableView().getItems().get(getIndex()); // récupère la salle de la ligne cliquée
+                    Salle salle = getTableView().getItems().get(getIndex());
                     try {
                         SalleDAO salleDAO = new SalleDAO();
-                        salleDAO.delete(salle); // supprime en base
-                        tvSalle.getItems().remove(salle); // retire de la ObservableList → tableau mis à jour instantanément
+                        salleDAO.delete(salle);
+                        tvSalle.getItems().remove(salle);
                     } catch (Exception e) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setTitle("Suppression impossible");
@@ -152,5 +154,4 @@ public class ListeSalleController extends MenuController implements Initializabl
             }
         });
     }
-
 }

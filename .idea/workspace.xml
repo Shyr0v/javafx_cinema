@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Simplification des logs">
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Log Salles">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/SalleDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/SalleDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +152,8 @@
       <workItem from="1776760238301" duration="2794000" />
       <workItem from="1776944048461" duration="41000" />
       <workItem from="1777288625918" duration="3594000" />
-      <workItem from="1777367140024" duration="15008000" />
+      <workItem from="1777367140024" duration="16626000" />
+      <workItem from="1777846288229" duration="2131000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -275,7 +283,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777450446188</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Log Salles">
+      <option name="closed" value="true" />
+      <created>1777451239432</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1777451239432</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -306,7 +322,8 @@
     <MESSAGE value="Ajout de la fonctionnalité de log" />
     <MESSAGE value="Update" />
     <MESSAGE value="Simplification des logs" />
-    <option name="LAST_COMMIT_MESSAGE" value="Simplification des logs" />
+    <MESSAGE value="Log Salles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Log Salles" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
