@@ -4,23 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Logo fix et login et mdp en dur retirer">
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierFranchiseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,33 +80,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Gradle.Download Sources.executor&quot;: &quot;Run&quot;,
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;axel&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/azera/Documents/javafx-cinema-etudiants&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settingsdialog.project.gradle&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Gradle.Download Sources.executor": "Run",
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "axel",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/azera/Documents/javafx-cinema-etudiants",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ]
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <method v="2">
@@ -160,7 +156,7 @@
       <workItem from="1776944048461" duration="41000" />
       <workItem from="1777288625918" duration="3594000" />
       <workItem from="1777367140024" duration="16626000" />
-      <workItem from="1777846288229" duration="3264000" />
+      <workItem from="1777846288229" duration="10438000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -306,7 +302,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777848483225</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Ajout de commentaires">
+      <option name="closed" value="true" />
+      <created>1777850010448</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1777850010448</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update">
+      <option name="closed" value="true" />
+      <created>1777884238281</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1777884238282</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,11 +347,12 @@
     <MESSAGE value="Ajout du logo dans toute les views et retirer le open and close constent" />
     <MESSAGE value="Navigation fluide et autres" />
     <MESSAGE value="Ajout de la fonctionnalité de log" />
-    <MESSAGE value="Update" />
     <MESSAGE value="Simplification des logs" />
     <MESSAGE value="Log Salles" />
     <MESSAGE value="Logo fix et login et mdp en dur retirer" />
-    <option name="LAST_COMMIT_MESSAGE" value="Logo fix et login et mdp en dur retirer" />
+    <MESSAGE value="Ajout de commentaires" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
