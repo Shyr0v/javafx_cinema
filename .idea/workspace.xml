@@ -4,16 +4,23 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Log Salles">
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Logo fix et login et mdp en dur retirer">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AccueilController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterSalleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ErrorController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeCinemaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeSalleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/MenuController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierCinemaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierFranchiseController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ModifierSalleController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_connexion.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +160,7 @@
       <workItem from="1776944048461" duration="41000" />
       <workItem from="1777288625918" duration="3594000" />
       <workItem from="1777367140024" duration="16626000" />
-      <workItem from="1777846288229" duration="2131000" />
+      <workItem from="1777846288229" duration="3264000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -291,7 +298,15 @@
       <option name="project" value="LOCAL" />
       <updated>1777451239432</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Logo fix et login et mdp en dur retirer">
+      <option name="closed" value="true" />
+      <created>1777848483225</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1777848483225</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -323,7 +338,8 @@
     <MESSAGE value="Update" />
     <MESSAGE value="Simplification des logs" />
     <MESSAGE value="Log Salles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Log Salles" />
+    <MESSAGE value="Logo fix et login et mdp en dur retirer" />
+    <option name="LAST_COMMIT_MESSAGE" value="Logo fix et login et mdp en dur retirer" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
