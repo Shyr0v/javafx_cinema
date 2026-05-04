@@ -47,16 +47,16 @@ public class AjouterSalleController extends MenuController implements Initializa
     }
 
     private void chargerCinemas() {
-        CinemaDAO cinemaDAO = new CinemaDAO(); // instancie le DAO pour accéder aux cinémas
-        cbCinema.setItems(FXCollections.observableArrayList(cinemaDAO.findAll())); // charge tous les cinémas dans la combobox
-        cbCinema.setConverter(new StringConverter<Cinema>() {
+        CinemaDAO cinemaDAO = new CinemaDAO(); // crée un accès à la table cinema en base
+        cbCinema.setItems(FXCollections.observableArrayList(cinemaDAO.findAll())); // récupère tous les cinémas en base et les met dans la combobox
+        cbCinema.setConverter(new StringConverter<Cinema>() { // dit à JavaFX comment afficher chaque cinéma dans la combobox
             @Override
-            public String toString(Cinema cinema) {
-                return cinema == null ? "" : cinema.getDenomination(); // affiche le nom au lieu de l'objet brut
+            public String toString(Cinema cinema) { // méthode appelée par JavaFX pour afficher chaque élément de la combobox
+                return cinema == null ? "" : cinema.getDenomination(); // si le cinéma est null retourne vide, sinon retourne son nom
             }
             @Override
-            public Cinema fromString(String string) {
-                return null; // non utilisé car la combobox n'est pas éditable
+            public Cinema fromString(String string) { // méthode obligatoire à écrire mais non utilisée ici
+                return null; // retourne null car on ne transforme jamais un texte en objet Cinema dans ce formulaire
             }
         });
     }

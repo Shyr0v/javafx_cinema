@@ -29,10 +29,12 @@ public class SalleDAO extends DAO<Salle> {
     public boolean delete(Salle obj) {
         boolean result = false; // par défaut la suppression échoue
         String query = "DELETE FROM salle WHERE id_salle = ?;"; // requête de suppression par id
+
         try (PreparedStatement ps = this.connect.prepareStatement(query)) { // try-with-resources ferme automatiquement le statement
             ps.setInt(1, obj.getIdSalle()); // remplace le ? par l'id de la salle à supprimer
             result = ps.executeUpdate() > 0; // true si au moins une ligne supprimée
         } catch (SQLException e) { e.printStackTrace(); }
+
         return result;
     }
 
