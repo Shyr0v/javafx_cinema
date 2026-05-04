@@ -4,19 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update">
-      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Ajout d'un moyen de voir les salles par rapport au cinema et modifs du style et ajout du logo">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterCinemaController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +146,7 @@
       <workItem from="1776944048461" duration="41000" />
       <workItem from="1777288625918" duration="3594000" />
       <workItem from="1777367140024" duration="16626000" />
-      <workItem from="1777846288229" duration="10438000" />
+      <workItem from="1777846288229" duration="11592000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -318,7 +308,23 @@
       <option name="project" value="LOCAL" />
       <updated>1777884238282</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Ajout d'un moyen de voir les salles par rapport au cinema et modifs du style et ajout du logo">
+      <option name="closed" value="true" />
+      <created>1777888804440</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1777888804440</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Ajout d'un moyen de voir les salles par rapport au cinema et modifs du style et ajout du logo">
+      <option name="closed" value="true" />
+      <created>1777893450927</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1777893450927</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -352,7 +358,8 @@
     <MESSAGE value="Logo fix et login et mdp en dur retirer" />
     <MESSAGE value="Ajout de commentaires" />
     <MESSAGE value="Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update" />
+    <MESSAGE value="Ajout d'un moyen de voir les salles par rapport au cinema et modifs du style et ajout du logo" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'un moyen de voir les salles par rapport au cinema et modifs du style et ajout du logo" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

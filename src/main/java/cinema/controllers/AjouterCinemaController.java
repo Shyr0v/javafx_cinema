@@ -16,6 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -58,23 +59,25 @@ public class AjouterCinemaController extends MenuController implements Initializ
      */
     @FXML
     public void bEnregistrerClick(ActionEvent event) {
-        String denom = tfDenomination.getText().trim(); // trim() supprime les espaces accidentels
+        String denom = tfDenomination.getText().trim();
         String adresse = tfAdresse.getText().trim();
         String ville = tfVille.getText().trim();
         Franchise franchise = lvFranchise.getSelectionModel().getSelectedItem();
 
-        // Vérification que tous les champs obligatoires sont remplis
         if (denom.isEmpty() || adresse.isEmpty() || ville.isEmpty() || franchise == null) {
-            return; // on pourrait afficher une popup d'erreur ici
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Champs manquants");
+            alert.setHeaderText(null);
+            alert.setContentText("Veuillez remplir tous les champs et sélectionner une franchise.");
+            alert.showAndWait();
+            return;
         }
 
-        // L'id est à 0 car géré par l'auto-incrément SQL
         Cinema cinema = new Cinema(0, denom, adresse, ville, franchise.getIdFranchise());
 
         CinemaDAO cinemaDAO = new CinemaDAO();
         cinemaDAO.create(cinema);
 
-        // Vide le formulaire après l'ajout pour permettre un nouvel ajout
         bEffacerClick(null);
     }
 
