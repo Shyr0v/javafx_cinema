@@ -27,69 +27,51 @@ import javafx.stage.Stage;
 /**
  * Contrôleur de la page listant tous les cinémas (page_liste_cinema.fxml).
  * Hérite de MenuController pour la barre de navigation.
- * Affiche un tableau avec la dénomination, la franchise et des boutons Modifier/Supprimer.
+ * Affiche un tableau avec dénomination, franchise, et des boutons Voir salles / Modifier / Supprimer.
  */
 public class ListeCinemaController extends MenuController implements Initializable {
 
     @FXML
-    private TableView<Cinema> tvCinema; // tableau principal affichant les cinémas
+    private TableView<Cinema> tvCinema;
 
     @FXML
-    private TableColumn<Cinema, String> tcDenomination, tcFranchise; // colonnes texte
+    private TableColumn<Cinema, String> tcDenomination, tcFranchise;
 
     @FXML
-    private TableColumn<Cinema, Void> tcModif, tcSupp; // colonnes boutons (pas de données)
+    private TableColumn<Cinema, Void> tcVp, tcModif, tcSupp;
+    // tcVp = colonne "Voir plus" : ouvre la liste des salles filtrées par cinéma
 
     @FXML
-    private Button bRetour; // bouton de retour vers l'accueil
+    private Button bRetour;
 
-    /**
-     * Initialisation appelée automatiquement par JavaFX après le chargement du FXML.
-     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // PropertyValueFactory appelle getDenomination() sur chaque objet Cinema
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
-
-        // Lambda nécessaire car la franchise s'obtient via un appel DAO supplémentaire
         tcFranchise.setCellValueFactory(cellData ->
                 new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
 
-        btnModif(); // configure les boutons Modifier dans la colonne tcModif
-        btnSupp();  // configure les boutons Supprimer dans la colonne tcSupp
+        btnVoirPlus(); // configure les boutons "Voir salles" dans la colonne tcVp
+        btnModif();
+        btnSupp();
 
-        tvCinema.setItems(getCinema()); // charge les données et les passe au tableau
+        tvCinema.setItems(getCinema());
     }
 
-    /**
-     * Charge tous les cinémas depuis la base et les retourne en ObservableList.
-     * ObservableList est requis par JavaFX pour que le tableau se mette à jour automatiquement.
-     */
     private ObservableList<Cinema> getCinema() {
         CinemaDAO cinemaDAO = new CinemaDAO();
         List<Cinema> mesCinemas = cinemaDAO.findAll();
         return FXCollections.observableArrayList(mesCinemas);
     }
 
-    /**
-     * Retourne le nom de la franchise associée à un cinéma.
-     * Appelée pour chaque ligne du tableau lors du rendu de la colonne tcFranchise.
-     * @param idFranchise L'identifiant de la franchise à retrouver
-     * @return Le nom de la franchise, ou chaîne vide si introuvable
-     */
     private String getNomFranchise(int idFranchise) {
         FranchiseDAO franchiseDAO = new FranchiseDAO();
         Franchise franchise = franchiseDAO.find(idFranchise);
-
         if (franchise != null) {
             return franchise.getNomFranchise();
         }
-        return ""; // chaîne vide si la franchise a été supprimée
+        return "";
     }
 
-    /**
-     * Retourne à la page d'accueil en réutilisant le stage existant.
-     */
     @FXML
     public void bRetourClick(ActionEvent actionEvent) {
         try {
@@ -98,7 +80,7 @@ public class ListeCinemaController extends MenuController implements Initializab
             Parent root = loader.load();
 
             AccueilController controller = loader.getController();
-            controller.setName(nameUti);  // transmet le nom pour maintenir la session
+            controller.setName(nameUti);
             controller.setBienvenue();
 
             Stage stage = (Stage) bRetour.getScene().getWindow();
@@ -113,8 +95,50 @@ public class ListeCinemaController extends MenuController implements Initializab
     }
 
     /**
-     * Configure la colonne Modifier : crée un bouton par ligne qui ouvre la page de modification.
-     * CellFactory est appelée pour chaque cellule ; on y crée un bouton avec son action.
+     * Configure la colonne "Voir plus" : ouvre la page des salles filtrées
+     * pour le cinéma de la ligne cliquée.
+     * Passe l'objet Cinema à SallesCinemaController via setCinema().
+     */
+    private void btnVoirPlus() {
+        tcVp.setCellFactory(column -> new TableCell<Cinema, Void>() {
+            private final Button btn = new Button("Voir salles");
+
+            {
+                btn.setOnAction(event -> {
+                    Cinema cinema = getTableView().getItems().get(getIndex());
+
+                    try {
+                        FXMLLoader loader = new FXMLLoader(
+                                getClass().getResource("/cinema/views/page_salles_cinema.fxml"));
+                        Parent root = loader.load();
+
+                        SallesCinemaController controller = loader.getController();
+                        controller.setName(nameUti);
+                        controller.setCinema(cinema); // charge les salles de ce cinéma uniquement
+
+                        Stage stage = (Stage) bRetour.getScene().getWindow();
+                        stage.setScene(new Scene(root));
+                        stage.setTitle("Salles de " + cinema.getDenomination());
+                        stage.setResizable(false);
+                        Navigation.applyLogo(stage);
+                        stage.show();
+
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+            }
+
+            @Override
+            protected void updateItem(Void item, boolean empty) {
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
+            }
+        });
+    }
+
+    /**
+     * Configure la colonne Modifier : ouvre la page de modification du cinéma.
      */
     private void btnModif() {
         tcModif.setCellFactory(column -> new TableCell<Cinema, Void>() {
@@ -122,7 +146,7 @@ public class ListeCinemaController extends MenuController implements Initializab
 
             {
                 btn.setOnAction(event -> {
-                    Cinema cinema = getTableView().getItems().get(getIndex()); // récupère le cinéma de la ligne cliquée
+                    Cinema cinema = getTableView().getItems().get(getIndex());
 
                     try {
                         FXMLLoader loader = new FXMLLoader(
@@ -131,8 +155,8 @@ public class ListeCinemaController extends MenuController implements Initializab
 
                         ModifierCinemaController controller = loader.getController();
                         controller.setName(nameUti);
-                        controller.setIdSec(cinema.getIdCinema()); // transmet l'id avant de charger les attributs
-                        controller.setAttrinuts(); // pré-remplit les champs avec les données actuelles
+                        controller.setIdSec(cinema.getIdCinema());
+                        controller.setAttrinuts();
 
                         Stage stage = (Stage) bRetour.getScene().getWindow();
                         stage.setScene(new Scene(root));
@@ -146,21 +170,16 @@ public class ListeCinemaController extends MenuController implements Initializab
                 });
             }
 
-            /**
-             * updateItem est appelée par JavaFX à chaque rendu de cellule.
-             * On n'affiche le bouton que si la cellule correspond à une ligne non vide.
-             */
             @Override
             protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty); // obligatoire pour réinitialiser correctement la cellule
+                super.updateItem(item, empty);
                 setGraphic(empty ? null : btn);
             }
         });
     }
 
     /**
-     * Configure la colonne Supprimer : crée un bouton par ligne qui supprime le cinéma en base
-     * puis retire la ligne du tableau sans recharger toutes les données.
+     * Configure la colonne Supprimer : supprime le cinéma en base et retire la ligne du tableau.
      */
     private void btnSupp() {
         tcSupp.setCellFactory(col -> new TableCell<Cinema, Void>() {
@@ -168,12 +187,12 @@ public class ListeCinemaController extends MenuController implements Initializab
 
             {
                 btn.setOnAction(event -> {
-                    Cinema cinema = getTableView().getItems().get(getIndex()); // cinéma de la ligne cliquée
+                    Cinema cinema = getTableView().getItems().get(getIndex());
                     CinemaDAO cinemaDAO = new CinemaDAO();
 
-                    boolean deleted = cinemaDAO.delete(cinema); // supprime en base
+                    boolean deleted = cinemaDAO.delete(cinema);
                     if (deleted) {
-                        tvCinema.getItems().remove(cinema); // retire de la ObservableList → tableau mis à jour
+                        tvCinema.getItems().remove(cinema);
                     }
                 });
             }

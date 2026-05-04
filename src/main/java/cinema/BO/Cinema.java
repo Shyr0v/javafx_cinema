@@ -70,4 +70,9 @@ public class Cinema {
     public void setIdFranchise(int idFranchise) {
         this.idFranchise = idFranchise;
     }
+
+    @Override
+    public String toString() {
+        return denomination;
+    }
 }
