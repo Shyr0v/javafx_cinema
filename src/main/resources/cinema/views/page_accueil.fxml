@@ -82,6 +82,7 @@
                     </menus>
                 </MenuBar>
             </children>
+
         </VBox>
         <QuadCurve controlX="-18.05954933166504"
                    controlY="-94.0"

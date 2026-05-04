@@ -27,132 +27,172 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+/**
+ * Contrôleur de la page listant toutes les salles (page_liste_salle.fxml).
+ * Hérite de MenuController pour la barre de navigation.
+ * Affiche un tableau avec numéro, description, nombre de places, cinéma et des boutons Modifier/Supprimer.
+ * Cette page est ouverte comme une fenêtre modale (new Stage avec APPLICATION_MODAL).
+ */
 public class ListeSalleController extends MenuController implements Initializable {
 
     @FXML
-    private TableView<Salle> tvSalle; // tableau qui affiche les objets Salle
+    private TableView<Salle> tvSalle; // tableau principal affichant les salles
 
     @FXML
-    private TableColumn<Salle, Integer> tcNumero, tcNbPlaces; // colonnes affichant des entiers
+    private TableColumn<Salle, Integer> tcNumero, tcNbPlaces; // colonnes entiers
 
     @FXML
-    private TableColumn<Salle, String> tcDescription, tcCinema; // colonnes affichant des String
+    private TableColumn<Salle, String> tcDescription, tcCinema; // colonnes texte
 
     @FXML
-    private TableColumn<Salle, Void> tcModif, tcSupp; // colonnes sans donnée, contiennent des boutons
+    private TableColumn<Salle, Void> tcModif, tcSupp; // colonnes boutons (pas de données)
 
     @FXML
-    private Button bRetour;
+    private Button bRetour; // bouton de retour vers l'accueil
 
+    /**
+     * Initialisation appelée automatiquement par JavaFX après le chargement du FXML.
+     */
     @Override
-    public void initialize(URL location, ResourceBundle resources) { // appelée automatiquement par JavaFX à l'ouverture de la page
-        tcNumero.setCellValueFactory(new PropertyValueFactory<>("numero")); // dit à JavaFX d'appeler getNumero() sur chaque Salle pour remplir cette colonne
-        tcDescription.setCellValueFactory(new PropertyValueFactory<>("description")); // idem, appelle getDescription()
-        tcNbPlaces.setCellValueFactory(new PropertyValueFactory<>("nbPlaces")); // idem, appelle getNbPlaces()
-        tcCinema.setCellValueFactory(cellData -> // pour la colonne cinéma on ne peut pas utiliser PropertyValueFactory car la valeur vient d'un autre DAO
-                new SimpleStringProperty(getNomCinema(cellData.getValue().getIdCinema()))); // cellData.getValue() = l'objet Salle de la ligne, on récupère son idCinema pour chercher le nom
+    public void initialize(URL location, ResourceBundle resources) {
+        tcNumero.setCellValueFactory(new PropertyValueFactory<>("numero"));           // getNumero()
+        tcDescription.setCellValueFactory(new PropertyValueFactory<>("description")); // getDescription()
+        tcNbPlaces.setCellValueFactory(new PropertyValueFactory<>("nbPlaces"));       // getNbPlaces()
 
-        btnModif(); // prépare les boutons Modifier dans chaque ligne du tableau
-        btnSupp(); // prépare les boutons Supprimer dans chaque ligne du tableau
+        // Lambda nécessaire car le nom du cinéma s'obtient via un appel DAO supplémentaire
+        tcCinema.setCellValueFactory(cellData ->
+                new SimpleStringProperty(getNomCinema(cellData.getValue().getIdCinema())));
 
-        tvSalle.setItems(getSalles()); // charge toutes les salles depuis la base et les affiche dans le tableau
+        btnModif(); // configure les boutons Modifier
+        btnSupp();  // configure les boutons Supprimer
+
+        tvSalle.setItems(getSalles()); // charge les données dans le tableau
     }
 
+    /**
+     * Charge toutes les salles depuis la base et les retourne en ObservableList.
+     */
     private ObservableList<Salle> getSalles() {
-        SalleDAO salleDAO = new SalleDAO(); // crée un accès à la table salle en base
-        List<Salle> mesSalles = salleDAO.findAll(); // récupère toutes les salles depuis la base sous forme de liste Java classique
-        return FXCollections.observableArrayList(mesSalles); // convertit en ObservableList, liste spéciale que JavaFX surveille pour mettre à jour le tableau automatiquement
+        SalleDAO salleDAO = new SalleDAO();
+        List<Salle> mesSalles = salleDAO.findAll();
+        return FXCollections.observableArrayList(mesSalles);
     }
 
+    /**
+     * Retourne le nom du cinéma associé à une salle.
+     * Appelée pour chaque ligne du tableau lors du rendu de la colonne tcCinema.
+     * @param idCinema L'identifiant du cinéma à retrouver
+     * @return La dénomination du cinéma, ou chaîne vide si introuvable
+     */
     private String getNomCinema(int idCinema) {
-        CinemaDAO cinemaDAO = new CinemaDAO(); // crée un accès à la table cinema en base
-        if (cinemaDAO.find(idCinema) != null) { // vérifie que le cinéma existe encore en base avant d'appeler getDenomination()
-            return cinemaDAO.find(idCinema).getDenomination(); // retourne le nom du cinéma plutôt que son id
+        CinemaDAO cinemaDAO = new CinemaDAO();
+        if (cinemaDAO.find(idCinema) != null) {
+            return cinemaDAO.find(idCinema).getDenomination();
         }
-        return ""; // retourne vide si le cinéma a été supprimé entre temps
+        return ""; // cinéma supprimé ou introuvable
     }
 
+    /**
+     * Ferme la fenêtre modale actuelle et ouvre la page d'accueil dans une nouvelle fenêtre modale.
+     * On ferme d'abord (stageP.close()) avant d'ouvrir la nouvelle pour éviter les fenêtres superposées.
+     */
     public void bRetourClick(ActionEvent actionEvent) {
-        Stage stageP = (Stage) bRetour.getScene().getWindow(); // remonte du bouton vers la scène puis vers la fenêtre pour pouvoir la fermer
-        stageP.close(); // ferme la fenêtre actuelle
+        Stage stageP = (Stage) bRetour.getScene().getWindow();
+        stageP.close(); // ferme la liste des salles
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(
-                    getClass().getResource("/cinema/views/page_accueil.fxml")); // chemin vers le FXML de la page d'accueil
-            Parent root = fxmlLoader.load(); // charge le fichier FXML et crée tous les composants graphiques
-            AccueilController accueilController = fxmlLoader.getController(); // récupère le contrôleur de la page d'accueil
-            accueilController.setName(nameUti); // passe le nom de l'utilisateur connecté à la page d'accueil
-            accueilController.setBienvenue(); // met à jour le label de bienvenue avec le nom
-            Stage stage = new Stage(); // crée une nouvelle fenêtre
-            stage.setTitle("Accueil"); // définit le titre de la fenêtre
-            stage.setScene(new Scene(root)); // associe le contenu FXML à la fenêtre
-            stage.initModality(Modality.APPLICATION_MODAL); // bloque les autres fenêtres tant que celle-ci est ouverte
-            stage.show(); // affiche la fenêtre
+                    getClass().getResource("/cinema/views/page_accueil.fxml"));
+            Parent root = fxmlLoader.load();
+
+            AccueilController accueilController = fxmlLoader.getController();
+            accueilController.setName(nameUti);  // transmet le nom pour maintenir la session
+            accueilController.setBienvenue();
+
+            Stage stage = new Stage();
+            stage.setTitle("Accueil");
+            stage.setScene(new Scene(root));
+            stage.initModality(Modality.APPLICATION_MODAL);
+            Navigation.applyLogo(stage); // logo appliqué sur le nouveau Stage
+            stage.show();
         } catch (Exception e) {
-            e.printStackTrace(); // affiche l'erreur dans la console si le chargement du FXML échoue
+            e.printStackTrace();
         }
     }
 
+    /**
+     * Configure la colonne Modifier : crée un bouton par ligne qui ouvre la page de modification.
+     */
     private void btnModif() {
-        tcModif.setCellFactory(column -> new TableCell<Salle, Void>() { // définit comment chaque cellule de la colonne Modifier est rendue
-            private final Button btn = new Button("Modifier"); // crée un bouton Modifier pour chaque ligne
-
+        tcModif.setCellFactory(column -> new TableCell<Salle, Void>() {
+            private final Button btn = new Button("Modifier"); // un bouton par cellule
             {
-                btn.setOnAction(event -> { // définit ce qui se passe quand on clique sur le bouton
-                    Salle salle = getTableView().getItems().get(getIndex()); // getIndex() = numéro de la ligne, getItems() = liste du tableau, on combine pour avoir la salle de cette ligne
-                    Stage stageP = (Stage) bRetour.getScene().getWindow(); // récupère la fenêtre actuelle
-                    stageP.close(); // ferme la fenêtre de liste
+                btn.setOnAction(event -> {
+                    Salle salle = getTableView().getItems().get(getIndex()); // salle de la ligne cliquée
+                    Stage stageP = (Stage) bRetour.getScene().getWindow();
+                    stageP.close(); // ferme la liste avant d'ouvrir la modification
                     try {
                         FXMLLoader fxmlLoader = new FXMLLoader(
-                                getClass().getResource("/cinema/views/page_modif_salle.fxml")); // charge le formulaire de modification
-                        Parent root = fxmlLoader.load(); // charge le FXML
-                        ModifierSalleController modifierSalleController = fxmlLoader.getController(); // récupère le contrôleur de modification
-                        modifierSalleController.setName(nameUti); // passe le nom utilisateur
-                        modifierSalleController.setIdSalle(salle.getIdSalle()); // passe l'id de la salle à modifier, doit être fait avant setAttributs()
-                        modifierSalleController.setAttributs(); // déclenche le chargement des données de la salle dans les champs du formulaire
-                        Stage stage = new Stage(); // crée une nouvelle fenêtre
-                        stage.setTitle("Modifier une salle"); // titre de la fenêtre
-                        stage.setScene(new Scene(root)); // associe le FXML à la fenêtre
-                        stage.initModality(Modality.APPLICATION_MODAL); // bloque les autres fenêtres
-                        stage.show(); // affiche la fenêtre
+                                getClass().getResource("/cinema/views/page_modif_salle.fxml"));
+                        Parent root = fxmlLoader.load();
+
+                        ModifierSalleController modifierSalleController = fxmlLoader.getController();
+                        modifierSalleController.setName(nameUti);
+                        modifierSalleController.setIdSalle(salle.getIdSalle()); // id transmis AVANT setAttributs()
+                        modifierSalleController.setAttributs(); // pré-remplit les champs avec les données actuelles
+
+                        Stage stage = new Stage();
+                        stage.setTitle("Modifier une salle");
+                        stage.setScene(new Scene(root));
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        Navigation.applyLogo(stage); // logo appliqué sur le nouveau Stage
+                        stage.show();
                     } catch (Exception e) {
-                        e.printStackTrace(); // affiche l'erreur si le chargement échoue
+                        e.printStackTrace();
                     }
                 });
             }
 
+            /**
+             * updateItem est appelée par JavaFX à chaque rendu de cellule.
+             * On n'affiche le bouton que si la cellule correspond à une ligne non vide.
+             */
             @Override
             protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty); // appel obligatoire sinon comportements visuels étranges lors du scroll
-                setGraphic(empty ? null : btn); // affiche le bouton si la ligne a une salle, sinon affiche rien
+                super.updateItem(item, empty); // obligatoire pour réinitialiser correctement la cellule
+                setGraphic(empty ? null : btn);
             }
         });
     }
 
+    /**
+     * Configure la colonne Supprimer : supprime la salle en base et retire la ligne du tableau.
+     * En cas d'erreur (contrainte de clé étrangère par exemple), une alerte est affichée.
+     */
     private void btnSupp() {
-        tcSupp.setCellFactory(col -> new TableCell<Salle, Void>() { // même principe que btnModif, définit le rendu de chaque cellule de la colonne Supprimer
-            private final Button btn = new Button("Supprimer"); // crée un bouton Supprimer pour chaque ligne
-
+        tcSupp.setCellFactory(col -> new TableCell<Salle, Void>() {
+            private final Button btn = new Button("Supprimer");
             {
-                btn.setOnAction(event -> { // définit ce qui se passe quand on clique sur le bouton
-                    Salle salle = getTableView().getItems().get(getIndex()); // récupère la salle de la ligne cliquée
+                btn.setOnAction(event -> {
+                    Salle salle = getTableView().getItems().get(getIndex()); // salle de la ligne cliquée
                     try {
-                        SalleDAO salleDAO = new SalleDAO(); // crée un accès à la table salle en base
-                        salleDAO.delete(salle); // supprime la salle en base via le DAO
-                        tvSalle.getItems().remove(salle); // retire la salle de la ObservableList, le tableau se met à jour instantanément sans recharger la page
+                        SalleDAO salleDAO = new SalleDAO();
+                        salleDAO.delete(salle);                  // supprime en base
+                        tvSalle.getItems().remove(salle);        // retire de la ObservableList → tableau mis à jour
                     } catch (Exception e) {
-                        Alert alert = new Alert(AlertType.ERROR); // crée une alerte d'erreur
-                        alert.setTitle("Suppression impossible"); // titre de l'alerte
-                        alert.setHeaderText(null); // pas d'en-tête
-                        alert.setContentText("La salle n'a pas pu être supprimée."); // message affiché
-                        alert.showAndWait(); // affiche l'alerte et attend que l'utilisateur ferme
+                        // Affiche une alerte si la suppression échoue (contrainte, connexion, etc.)
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setTitle("Suppression impossible");
+                        alert.setHeaderText(null);
+                        alert.setContentText("La salle n'a pas pu être supprimée.");
+                        alert.showAndWait();
                     }
                 });
             }
 
             @Override
             protected void updateItem(Void item, boolean empty) {
-                super.updateItem(item, empty); // appel obligatoire
-                setGraphic(empty ? null : btn); // affiche le bouton si la ligne a une salle, sinon affiche rien
+                super.updateItem(item, empty);
+                setGraphic(empty ? null : btn);
             }
         });
     }

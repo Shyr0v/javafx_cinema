@@ -4,12 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update ConnexionController et UtilisateurDAO">
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/UtilisateurDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/UtilisateurDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/app/MainApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/AjouterFranchiseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ConnexionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/Navigation.java" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update">
+      <change beforePath="$PROJECT_DIR$/.idea/data_source_mapping.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/data_source_mapping.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/BO/Cinema.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_ajout_salle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_salle.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_cinema.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_franchise.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_modif_salle.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,6 +51,7 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
@@ -90,7 +98,7 @@
     "project.structure.last.edited": "SDKs",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "reference.settingsdialog.project.gradle",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
@@ -143,6 +151,12 @@
       <workItem from="1774875273023" duration="477000" />
       <workItem from="1774945881378" duration="10811000" />
       <workItem from="1775908578536" duration="9024000" />
+      <workItem from="1776083000669" duration="14190000" />
+      <workItem from="1776760238301" duration="2794000" />
+      <workItem from="1776944048461" duration="41000" />
+      <workItem from="1777288625918" duration="3594000" />
+      <workItem from="1777367140024" duration="16626000" />
+      <workItem from="1777846288229" duration="10438000" />
     </task>
     <task id="LOCAL-00001" summary="Update">
       <option name="closed" value="true" />
@@ -216,7 +230,95 @@
       <option name="project" value="LOCAL" />
       <updated>1775916325695</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Ajout du logo dans toute les views et retirer le open and close constent">
+      <option name="closed" value="true" />
+      <created>1776171374819</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1776171374819</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Navigation fluide et autres">
+      <option name="closed" value="true" />
+      <created>1777294480524</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1777294480524</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Ajout de la fonctionnalité de log">
+      <option name="closed" value="true" />
+      <created>1777384725616</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1777384725616</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Ajout de la fonctionnalité de log">
+      <option name="closed" value="true" />
+      <created>1777386225453</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1777386225453</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Update">
+      <option name="closed" value="true" />
+      <created>1777386290648</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1777386290648</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Update">
+      <option name="closed" value="true" />
+      <created>1777387086963</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1777387086963</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Simplification des logs">
+      <option name="closed" value="true" />
+      <created>1777450446188</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1777450446188</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Log Salles">
+      <option name="closed" value="true" />
+      <created>1777451239432</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1777451239432</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Logo fix et login et mdp en dur retirer">
+      <option name="closed" value="true" />
+      <created>1777848483225</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1777848483225</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Ajout de commentaires">
+      <option name="closed" value="true" />
+      <created>1777850010448</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1777850010448</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Update">
+      <option name="closed" value="true" />
+      <created>1777884238281</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1777884238282</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -234,7 +336,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Update" />
     <MESSAGE value="Update Franchise et Menu" />
     <MESSAGE value="Update Ajout franchise" />
     <MESSAGE value="Update Ajout cinema OP" />
@@ -243,7 +344,15 @@
     <MESSAGE value="Update Accueil" />
     <MESSAGE value="Update DBManager and main.css" />
     <MESSAGE value="Update ConnexionController et UtilisateurDAO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update ConnexionController et UtilisateurDAO" />
+    <MESSAGE value="Ajout du logo dans toute les views et retirer le open and close constent" />
+    <MESSAGE value="Navigation fluide et autres" />
+    <MESSAGE value="Ajout de la fonctionnalité de log" />
+    <MESSAGE value="Simplification des logs" />
+    <MESSAGE value="Log Salles" />
+    <MESSAGE value="Logo fix et login et mdp en dur retirer" />
+    <MESSAGE value="Ajout de commentaires" />
+    <MESSAGE value="Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
