@@ -1,4 +1,4 @@
-package bo;
+package cinema.BO;
 
 import cinema.BO.Cinema;
 

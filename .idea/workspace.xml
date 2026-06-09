@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Ajout de la pop-up des gérants">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/CinemaDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/CinemaDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/controllers/ListeFranchiseController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/cinema/views/page_liste_franchise.fxml" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Ajout d'une nombre de cinema par franchise">
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/BO/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/BO/Evenement.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -342,7 +339,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781009953197</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Ajout d'une nombre de cinema par franchise">
+      <option name="closed" value="true" />
+      <created>1781010387770</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1781010387770</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -381,7 +386,8 @@
     <MESSAGE value="Ajout de la préselect des gérents" />
     <MESSAGE value="Ajout de la préselect des gérants" />
     <MESSAGE value="Ajout de la pop-up des gérants" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout de la pop-up des gérants" />
+    <MESSAGE value="Ajout d'une nombre de cinema par franchise" />
+    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'une nombre de cinema par franchise" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
