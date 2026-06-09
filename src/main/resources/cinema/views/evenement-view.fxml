@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox spacing="10" xmlns:fx="http://javafx.com/fxml"
+      fx:controller="cinema.controllers.EvenementController"
+      style="-fx-padding: 20;">
+
+    <Label text="Créer un événement" style="-fx-font-size: 16; -fx-font-weight: bold;"/>
+
+    <Label text="Nom :"/>
+    <TextField fx:id="tfNom"/>
+
+    <Label text="Date :"/>
+    <DatePicker fx:id="dpDate"/>
+
+    <Label text="Nombre de places :"/>
+    <TextField fx:id="tfNbrPlace"/>
+
+    <CheckBox fx:id="cbGratuit" text="Gratuit"/>
+
+    <Label text="Cinéma :"/>
+    <ComboBox fx:id="cbCinema" maxWidth="Infinity"/>
+
+    <Button text="Créer" onAction="#handleCreate"/>
+
+    <Label fx:id="lblMessage" style="-fx-text-fill: green;"/>
+
+
+</VBox>
