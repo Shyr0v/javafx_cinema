@@ -41,6 +41,15 @@ CREATE TABLE salle (
    CONSTRAINT fk_cinema FOREIGN KEY(id_cinema) REFERENCES cinema(id_cinema) ON DELETE CASCADE
 );
 
+CREATE TABLE evenement (
+    id          SERIAL PRIMARY KEY,
+    nom         VARCHAR(100) NOT NULL,
+    date        DATE NOT NULL,
+    nbr_place   INT NOT NULL,
+    gratuit     BOOLEAN NOT NULL DEFAULT FALSE,
+    id_cinema INTEGER NOT NULL,
+    CONSTRAINT fk_cinema FOREIGN KEY(id_cinema) REFERENCES cinema(id_cinema) ON DELETE CASCADE
+);
 -- Index pour optimiser les recherches
 CREATE INDEX idx_cinema_franchise ON cinema(id_franchise);
 
