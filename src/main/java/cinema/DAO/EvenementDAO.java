@@ -36,6 +36,17 @@ public class EvenementDAO extends DAO<Evenement> {
     @Override
     public boolean update(Evenement obj) {
         return false;}
+
+    @Override
+    public boolean delete(bo.Evenement obj) {
+        return false;
+    }
+
+    @Override
+    public boolean update(bo.Evenement obj) {
+        return false;
+    }
+
     @Override public Evenement find(int id) {
         return null; }
     @Override public List<Evenement> findAll() {
