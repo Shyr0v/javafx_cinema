@@ -1,11 +1,12 @@
 package cinema.DAO;
 
+import cinema.BO.Evenement;
 import java.sql.*;
 import java.util.List;
 
-public class EvenementDAO extends DAO<bo.Evenement> {
+public class EvenementDAO extends DAO<Evenement> {
 
-    public boolean create(bo.Evenement evenement) {
+    public boolean create(Evenement evenement) {
         String sql = "INSERT INTO evenement (nom, date, nbr_place, gratuit, id_cinema) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = connect.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             stmt.setString(1, evenement.getNom());
@@ -28,8 +29,15 @@ public class EvenementDAO extends DAO<bo.Evenement> {
         return false;
     }
 
-    @Override public boolean delete(bo.Evenement obj) { return false; }
-    @Override public boolean update(bo.Evenement obj) { return false; }
-    @Override public bo.Evenement find(int id) { return null; }
-    @Override public List<bo.Evenement> findAll() { return null; }
+    @Override
+    public boolean delete(Evenement obj) {
+        return false;}
+
+    @Override
+    public boolean update(Evenement obj) {
+        return false;}
+    @Override public Evenement find(int id) {
+        return null; }
+    @Override public List<Evenement> findAll() {
+        return null; }
 }

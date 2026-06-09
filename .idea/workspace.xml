@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Ajout d'une nombre de cinema par franchise">
-      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/BO/Evenement.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/BO/Evenement.java" afterDir="false" />
+    <list default="true" id="52e742bf-bc57-4a5f-835b-fb2885e3ce88" name="Changes" comment="Update BO">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/DAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/DAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cinema/DAO/EvenementDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cinema/DAO/EvenementDAO.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +349,15 @@
       <option name="project" value="LOCAL" />
       <updated>1781010387770</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Update BO">
+      <option name="closed" value="true" />
+      <created>1781010428234</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1781010428234</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -387,7 +397,8 @@
     <MESSAGE value="Ajout de la préselect des gérants" />
     <MESSAGE value="Ajout de la pop-up des gérants" />
     <MESSAGE value="Ajout d'une nombre de cinema par franchise" />
-    <option name="LAST_COMMIT_MESSAGE" value="Ajout d'une nombre de cinema par franchise" />
+    <MESSAGE value="Update BO" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update BO" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

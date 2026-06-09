@@ -44,6 +44,10 @@ public abstract class DAO<T> {
      */
     public abstract boolean update(T obj);
 
+    public abstract boolean delete(bo.Evenement obj);
+
+    public abstract boolean update(bo.Evenement obj);
+
     /**
      * Recherche un objet par son identifiant.
      * @param id L'identifiant de l'objet à retrouver
