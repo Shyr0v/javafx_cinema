@@ -17,6 +17,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -38,7 +39,7 @@ public class ModifierFranchiseController extends MenuController implements Initi
     private Button bRetour; // bouton de retour vers la liste des franchises
 
     @FXML
-    private ListView<Utilisateur> lvGerantFranchise; // liste des gérants, pré-sélectionnée sur le gérant actuel
+    private ComboBox<Utilisateur> lvGerantFranchise; // liste des gérants, pré-sélectionnée sur le gérant actuel
 
     private int idFranchise; // id de la franchise à modifier, reçu depuis ListeFranchiseController
 
@@ -69,9 +70,13 @@ public class ModifierFranchiseController extends MenuController implements Initi
     public void setAttributes(Franchise franchise) {
         tfNomFranchise.setText(franchise.getNomFranchise());
         tfSiegeSocial.setText(franchise.getSiegeSocial());
-        // select(index) sélectionne par position dans la liste ; idGerant - 1 car les indices commencent à 0
-        lvGerantFranchise.getSelectionModel().select(franchise.getIdGerant() - 1);
-        this.idFranchise = franchise.getIdFranchise(); // stocke l'id pour la mise à jour
+        this.idFranchise = franchise.getIdFranchise();
+
+        // Présélectionner le gérant correspondant
+        lvGerantFranchise.getItems().stream()
+                .filter(u -> u.getIdUtilisateur() == franchise.getIdGerant())
+                .findFirst()
+                .ifPresent(u -> lvGerantFranchise.setValue(u));
     }
 
     /**

@@ -16,6 +16,7 @@
 <?import javafx.scene.shape.QuadCurve?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.ComboBox?>
 <Pane maxHeight="-Infinity"
       maxWidth="-Infinity"
       minHeight="-Infinity"
@@ -113,7 +114,7 @@
         <Label layoutX="60.0" layoutY="224.0" text="Gérant :" textFill="#024010">
             <font><Font name="System Bold" size="14.0" /></font>
         </Label>
-        <ListView fx:id="lvGerantFranchise"
+        <ComboBox fx:id="lvGerantFranchise"
                   layoutX="220.0" layoutY="220.0"
                   prefWidth="450.0" prefHeight="140.0" />
 

@@ -66,6 +66,11 @@
                                 <MenuItem fx:id="bAjouterSalle" mnemonicParsing="false" onAction="#bAjouterSalleClick" text="Ajouter une salle" />
                             </items>
                         </Menu>
+                        <Menu fx:id="gestionEvenement" mnemonicParsing="false" text="Gestion événements">
+                            <items>
+                                <MenuItem fx:id="bAjouterEvenement" mnemonicParsing="false" onAction="#bAjouterEvenementClick" text="Ajouter un événement" />
+                            </items>
+                        </Menu>
                         <Menu fx:id="bAutres" mnemonicParsing="false" text="Autres">
                             <graphic>
                                 <ImageView fitWidth="16" fitHeight="16">
