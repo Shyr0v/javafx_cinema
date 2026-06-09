@@ -16,10 +16,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -111,12 +108,14 @@ public class AjouterFranchiseController extends MenuController implements Initia
         boolean controle = franchiseDAO.create(franchise);
 
         if (controle) {
-            // Insertion réussie : on vide le formulaire pour permettre un nouvel ajout
             tfNomFranchise.clear();
             tfSiegeSocial.clear();
             lvGerantFranchise.getSelectionModel().clearSelection();
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setContentText("La franchise a été créée avec succès !");
+            alert.showAndWait();
         } else {
-            // Erreur lors de l'insertion (doublon, contrainte, etc.)
             showError();
         }
     }

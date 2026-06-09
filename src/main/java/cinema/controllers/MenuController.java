@@ -19,7 +19,7 @@ public class MenuController {
     // Éléments du menu déclarés dans le FXML de chaque vue via fx:id
     @FXML
     protected MenuItem bListeFranchise, bAjouterFranchise, bListeCinema, bAjouterCinema,
-            bQuitter, bAccueil, bListeSalle, bAjouterSalle;
+            bQuitter, bAccueil, bListeSalle, bAjouterSalle,bAjouterEvenement;
 
     /**
      * Nom de l'utilisateur connecté, propagé de page en page pour maintenir la session.
@@ -203,6 +203,23 @@ public class MenuController {
             controller.setName(nameUti); // transmet le nom pour maintenir la session
 
             changerScene(stage, root, "Ajouter une salle");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    /** Navigue vers le formulaire d'ajout d'événement depuis le menu. */
+    @FXML
+    public void bAjouterEvenementClick(ActionEvent event) {
+        Stage stage = getStageDepuisMenu(event);
+        try {
+            FXMLLoader loader = new FXMLLoader(
+                    getClass().getResource("/cinema/views/evenement-view.fxml"));
+            Parent root = loader.load();
+
+            EvenementController controller = loader.getController();
+            controller.setName(nameUti);
+
+            changerScene(stage, root, "Ajouter un événement");
         } catch (Exception e) {
             e.printStackTrace();
         }
