@@ -8,6 +8,7 @@ import cinema.BO.Cinema;
 import cinema.BO.Franchise;
 import cinema.DAO.CinemaDAO;
 import cinema.DAO.FranchiseDAO;
+import cinema.DAO.SalleDAO;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -41,6 +42,8 @@ public class ListeCinemaController extends MenuController implements Initializab
     private TableColumn<Cinema, Void> tcVp, tcModif, tcSupp;
     // tcVp = colonne "Voir plus" : ouvre la liste des salles filtrées par cinéma
 
+    @FXML private TableColumn<Cinema, Integer> tcNbSalles;
+
     @FXML
     private Button bRetour;
 
@@ -49,6 +52,15 @@ public class ListeCinemaController extends MenuController implements Initializab
         tcDenomination.setCellValueFactory(new PropertyValueFactory<>("denomination"));
         tcFranchise.setCellValueFactory(cellData ->
                 new SimpleStringProperty(getNomFranchise(cellData.getValue().getIdFranchise())));
+        SalleDAO salleDAO = new SalleDAO();
+        tcNbSalles.setCellValueFactory(cellData -> {
+
+            int nb = salleDAO.countByCinema(cellData.getValue().getIdCinema());
+            // SimpleIntegerProperty = objet JavaFX qui contient un Integer
+            // .asObject() = conversion necessaire pour que JavaFX puisse l'afficher
+            return new javafx.beans.property.SimpleIntegerProperty(nb).asObject();
+        });
+
 
         btnVoirPlus(); // configure les boutons "Voir salles" dans la colonne tcVp
         btnModif();
@@ -93,6 +105,8 @@ public class ListeCinemaController extends MenuController implements Initializab
             e.printStackTrace();
         }
     }
+
+
 
     /**
      * Configure la colonne "Voir plus" : ouvre la page des salles filtrées
@@ -204,4 +218,7 @@ public class ListeCinemaController extends MenuController implements Initializab
             }
         });
     }
+
+
+
 }

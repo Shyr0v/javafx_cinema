@@ -206,6 +206,23 @@ public class SalleDAO extends DAO<Salle> {
         return salles;
     }
 
+    public int countByCinema(int idCinema) {
+        int count = 0;  // valeur par defaut si erreur
+        try {
+            String sql = "SELECT COUNT(*) FROM salle WHERE id_cinema = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, idCinema);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);  // lit la premiere colonne du resultat
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();  // affiche l'erreur en console si probleme SQL
+        }
+        return count;
+    }
+
+
     /**
      * Formate les données d'une salle en chaîne lisible pour les logs.
      * @param salle La salle à formater

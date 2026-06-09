@@ -97,6 +97,8 @@
                 <TableColumn fx:id="tcVp" prefWidth="100.0" text="Voir plus" />
                 <TableColumn fx:id="tcModif" prefWidth="110.0" text="Modifier" />
                 <TableColumn fx:id="tcSupp" prefWidth="110.0" text="Supprimer" />
+                <TableColumn fx:id="tcNbSalles" prefWidth="100.0" text="Nb salles" />
+
             </columns>
         </TableView>
 
