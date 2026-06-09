@@ -47,6 +47,9 @@ public class ListeFranchiseController extends MenuController implements Initiali
     private TableColumn<Franchise, String> tcGerant; // colonne gérant (calculée via DAO)
 
     @FXML
+    private TableColumn<Franchise, String> tcNbCinemas;
+
+    @FXML
     private TableColumn<Franchise, Void> tcModifier; // colonne bouton Modifier (pas de données)
 
     @FXML
@@ -69,6 +72,13 @@ public class ListeFranchiseController extends MenuController implements Initiali
         Map<Integer, Utilisateur> gerants = gerantDAO.findAll()
                 .stream()
                 .collect(Collectors.toMap(Utilisateur::getIdUtilisateur, u -> u));
+
+        CinemaDAO cinemaDAO = new CinemaDAO();
+
+        tcNbCinemas.setCellValueFactory(cellData -> {
+            int count = cinemaDAO.countByFranchise(cellData.getValue().getIdFranchise());
+            return new SimpleStringProperty(String.valueOf(count));
+        });
 
         // Colonne gérant : lambda car nécessite une lookup dans la Map
         tcGerant.setCellValueFactory(cellData -> {

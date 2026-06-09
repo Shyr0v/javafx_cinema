@@ -93,6 +93,7 @@
                 <TableColumn fx:id="tcNomFranchise" prefWidth="150.0" text="Nom" />
                 <TableColumn fx:id="tcSiegeSocial" prefWidth="160.0" text="Siège Social" />
                 <TableColumn fx:id="tcGerant" prefWidth="210.0" text="Gérant" />
+                <TableColumn fx:id="tcNbCinemas" prefWidth="120.0" text="Nb cinémas" />
                 <TableColumn fx:id="tcSupprimer" prefWidth="110.0" text="Supprimer" />
                 <TableColumn fx:id="tcModifier" prefWidth="110.0" text="Modifier" />
             </columns>

@@ -172,6 +172,22 @@ public class CinemaDAO extends DAO<Cinema> {
         return cinemas;
     }
 
+    public int countByFranchise(int idFranchise) {
+        int count = 0;
+        try {
+            String sql = "SELECT COUNT(*) FROM cinema WHERE id_franchise = ?";
+            PreparedStatement ps = this.connect.prepareStatement(sql);
+            ps.setInt(1, idFranchise);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                count = rs.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return count;
+    }
+
     /**
      * Construit un objet Cinema à partir d'une ligne du ResultSet.
      * Centralisé pour éviter de dupliquer la lecture des colonnes dans find() et findAll().
